@@ -20,15 +20,6 @@ function Home() {
       <VideoCard />
       <VideoCard />
       <VideoCard />
-      <VideoCard />
-      <VideoCard />
-      <VideoCard />
-      <VideoCard />
-      <VideoCard />
-      <VideoCard />
-      <VideoCard />
-      <VideoCard />
-      <VideoCard />
     </Container>
   )
 }

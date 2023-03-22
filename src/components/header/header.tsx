@@ -8,7 +8,8 @@ import {
   SearchInputContainer,
   SearchInput,
   SearchButton,
-  HeaderButtons 
+  HeaderButtons, 
+  LinkLogo
 } from "./header-style";
 import Menu from '../../assets/menu.png'
 import Logoyt from '../../assets/logoyoutube.png'
@@ -36,7 +37,9 @@ const Header: React.FC = () => {
           <ButtonIcon alt="logo menu" src={Menu}/>
         </ButtonContainer>
 
-        <Logo alt="logo youtube" src={Logoyt} />
+        <LinkLogo to='/'>
+          <Logo alt="logo youtube" src={Logoyt} />
+        </LinkLogo>
 
       </LogoContainer>
 

@@ -37,8 +37,8 @@ function ExplorerMenu() {
       <MenuTitles>
         <span>Explorar</span>
       </MenuTitles>
-      {items.map((item) => (
-        <MenuItem openMenu={openMenu}>
+      {items.map((item, index) => (
+        <MenuItem key={index} openMenu={openMenu}>
           <ButtonIcon alt="Ícone" src={item.icon}/>
           <MenuItemDescription openMenu={openMenu}>{item.description}</MenuItemDescription>
         </MenuItem>

@@ -24,8 +24,8 @@ function HomeMenu() {
 
   return (
     <MenuContainer>
-      {items.map((item) => (
-        <Link to={item.link}>
+      {items.map((item, index) => (
+        <Link key={index} to={item.link}>
           <MenuItem openMenu={openMenu}>
             <ButtonIcon alt="Ícone" src={item.icon}/>
             <MenuItemDescription openMenu={openMenu}>{item.description}</MenuItemDescription>

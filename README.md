@@ -5,8 +5,6 @@
 Essa é uma aplicação **React** em **Typescript** baseada no YouTube. Esse projeto não está disponível para
 visualização no navegador pois ainda está em desenvolvimento. Em breve o colocaremos em produção.
 
-Para visualizar esse projeto em seu navegador [clique aqui](https://rodrigoserrasqueiro.github.io/youtube-clone/).
-
 # Instruções
 
 ### Pré-requisitos

@@ -1,6 +1,11 @@
 import { Container } from "./category-link-style";
 
-function CategoryLink({link, name} : any) {
+interface Props {
+  link: string,
+  name: string
+}
+
+function CategoryLink({link, name} : Props) {
   return (
     <Container to={link}>
       {name}

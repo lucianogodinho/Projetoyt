@@ -28,8 +28,47 @@ function CategoryBar() {
     }
   };
 
+  const links = [
+    {to: '/', name: 'Tudo'},
+    {to: '/link2', name: 'Games'},
+    {to: '/link3', name: 'Futebol'},
+    {to: '/link4', name: 'Programação'},
+    {to: '/link5', name: 'Músicas'},
+    {to: '/link6', name: 'Ao vivo'},
+    {to: '/link7', name: 'Lives'},
+    {to: '/link8', name: 'TV'},
+    {to: '/link9', name: 'Notícias'},
+    {to: '/link10', name: 'Séries'},
+    {to: '/link11', name: 'Entretenimento'},
+    {to: '/link12', name: 'Culinária brasileira'},
+    {to: '/link13', name: 'Tutoriais'},
+    {to: '/link14', name: 'Restaurantes'},
+    {to: '/link15', name: 'Oficinas'},
+    {to: '/link16', name: 'Países'},
+    {to: '/link17', name: 'Louvores'},
+    {to: '/link18', name: 'Aviões'},
+    {to: '/link19', name: 'Política'},
+    {to: '/link20', name: 'Formula 1'},
+    {to: '/link21', name: 'Cursos'},
+    {to: '/link22', name: 'Animais incríveis'},
+    {to: '/link23', name: 'Infantil'},
+    {to: '/link24', name: 'Desenhos legais'},
+    {to: '/link25', name: 'Informática'},
+    {to: '/link26', name: 'Casal'},
+    {to: '/link27', name: 'Viagens'},
+    {to: '/link28', name: 'Aventura'},
+    {to: '/link29', name: 'Vlogs'},
+    {to: '/link30', name: 'Documentários'},
+    {to: '/link31', name: 'História da civilização'},
+    {to: '/link32', name: 'Ciências'},
+    {to: '/link33', name: 'Geografia'},
+    {to: '/link34', name: 'Quimica'},
+    {to: '/link35', name: 'Física'},
+  ]
+
 
   return (
+
     <Container openMenu={openMenu}>
       <SliderButtons onClick={handleBackClick}>
         <ButtonIcon alt="ícone voltar" src={BackIcon} />
@@ -41,42 +80,10 @@ function CategoryBar() {
             transform: `translateX(${sliderPosition}px)`, 
             transition: '0.5s ease-in-out',
 
-          }}>
-          <CategoryLink link={'/'}name={'Tudo'} />
-          <CategoryLink link={'/link2'}name={'Games'} />
-          <CategoryLink link={'/link3'}name={'Mix'} />
-          <CategoryLink link={'/link4'}name={'História'} />
-          <CategoryLink link={'/link5'}name={'Programação'} />
-          <CategoryLink link={'/link6'}name={'Brasil'} />
-          <CategoryLink link={'/link7'}name={'Novidades'} />
-          <CategoryLink link={'/link8'}name={'Futebol'} />
-          <CategoryLink link={'/link9'}name={'CSS'} />
-          <CategoryLink link={'/link10'}name={'JavaScript'} />
-          <CategoryLink link={'/link11'}name={'Oportunidades'} />
-          <CategoryLink link={'/link12'}name={'Receitas'} />
-          <CategoryLink link={'/link13'}name={'Política'} />
-          <CategoryLink link={'/link14'}name={'Faz o L'} />
-          <CategoryLink link={'/link15'}name={'Restaurantes'} />
-          <CategoryLink link={'/link16'}name={'Tutoriais'} />
-          <CategoryLink link={'/link17'}name={'Entrevistas de emprego'} />
-          <CategoryLink link={'/link18'}name={'Carros novos'} />
-          <CategoryLink link={'/link19'}name={'TLOU'} />
-          <CategoryLink link={'/link20'}name={'Maiores descobertas'} />
-          <CategoryLink link={'/link21'}name={'Fazendas'} />
-          <CategoryLink link={'/link22'}name={'Estradas'} />
-          <CategoryLink link={'/link23'}name={'Viagens'} />
-          <CategoryLink link={'/link24'}name={'São Paulo'} />
-          <CategoryLink link={'/link25'}name={'Som de chuva'} />
-          <CategoryLink link={'/link26'}name={'Músicas'} />
-          <CategoryLink link={'/link27'}name={'Louvores'} />
-          <CategoryLink link={'/link28'}name={'Cultos'} />
-          <CategoryLink link={'/link29'}name={'Ao vivo'} />
-          <CategoryLink link={'/link30'}name={'Lives'} />
-          <CategoryLink link={'/link31'}name={'Medicina'} />
-          <CategoryLink link={'/link32'}name={'Informação'} />
-          <CategoryLink link={'/link33'}name={'Notíciario'} />
-          <CategoryLink link={'/link34'}name={'Fake News'} />
-          <CategoryLink link={'/link35'}name={'Noticias'} />
+        }}>
+        {links.map((link, index) => (
+          <CategoryLink link={link.to} name={link.name} key={index}/>
+        ))} 
         </SliderContent>
       </Slider>
       <SliderButtons onClick={handleNextClick}>

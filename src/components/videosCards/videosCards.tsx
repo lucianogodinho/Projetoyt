@@ -1,22 +1,26 @@
 import { Banner, ChannelImage, Container, TextCard, TextContainer, Title, TitleContainer } from "./videosCards-style";
-import Thumbnail1 from '../../assets/thumbnails/thumbnail1.jpg'
-import { useAppContext } from "../../contexts/openMenu";
 
-function VideoCard() {
+interface Props {
+  title: string
+  thumbnail: string
+  channelImage: string
+  channelName: string
+  details: string
+}
 
-  const { openMenu } = useAppContext();
+function VideoCard(props : Props) {
 
   return (
     <Container>
-      <Banner alt="thumbnail" src={Thumbnail1}/>
+      <Banner alt="thumbnail" src={props.thumbnail}/>
       <TitleContainer>
-        <ChannelImage openMenu={openMenu}>
-          RS
+        <ChannelImage>
+          {props.channelImage}
         </ChannelImage>
         <TextContainer>
-          <Title>THE LAST OF US PARTE II - #1: INÍCIO DO JOGO (PS4 Pro)</Title>
-          <TextCard>Funky Black Cat</TextCard>
-          <TextCard>520 mil visualizações - há 2 anos</TextCard>
+          <Title>{props.title}</Title>
+          <TextCard>{props.channelName}</TextCard>
+          <TextCard>{props.details}</TextCard>
         </TextContainer>
       </TitleContainer>
     </Container>

@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-interface ChannelProps {
-  openMenu: boolean;
-}
-
 export const Container = styled.div`
   width: 100%;
   cursor: pointer;
@@ -20,9 +16,9 @@ export const TitleContainer = styled.div`
   display: flex;
 `;
 
-export const ChannelImage = styled.div<ChannelProps>`
+export const ChannelImage = styled.div`
   background-color: beige;
-  width: ${({openMenu}) => openMenu? '55px' : '60px'};
+  width: 40px;
   height: 40px;
   border-radius: 50%;
   display: flex;

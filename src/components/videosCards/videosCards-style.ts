@@ -18,8 +18,10 @@ export const TitleContainer = styled.div`
 
 export const ChannelImage = styled.div`
   background-color: beige;
-  width: 40px;
-  height: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  min-height: 40px;
+  max-height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;

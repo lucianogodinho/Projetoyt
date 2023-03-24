@@ -2,7 +2,7 @@ import { SliderButtons, ButtonIcon, Container, Slider, SliderContent } from "./c
 import { useAppContext } from "../../contexts/openMenu";
 import BackIcon from '../../assets/back-button.png'
 import NextIcon from '../../assets/next-button.png'
-import CategoryLink from "./categoryLinks/category-link";
+import CategoryButton from "./categoryLinks/category-button";
 import { useState } from "react";
 
 function CategoryBar() {
@@ -28,43 +28,36 @@ function CategoryBar() {
     }
   };
 
-  const links = [
-    {to: '/', name: 'Tudo'},
-    {to: '/link2', name: 'Games'},
-    {to: '/link3', name: 'Futebol'},
-    {to: '/link4', name: 'Programação'},
-    {to: '/link5', name: 'Músicas'},
-    {to: '/link6', name: 'Ao vivo'},
-    {to: '/link7', name: 'Lives'},
-    {to: '/link8', name: 'TV'},
-    {to: '/link9', name: 'Notícias'},
-    {to: '/link10', name: 'Séries'},
-    {to: '/link11', name: 'Entretenimento'},
-    {to: '/link12', name: 'Culinária brasileira'},
-    {to: '/link13', name: 'Tutoriais'},
-    {to: '/link14', name: 'Restaurantes'},
-    {to: '/link15', name: 'Oficinas'},
-    {to: '/link16', name: 'Países'},
-    {to: '/link17', name: 'Louvores'},
-    {to: '/link18', name: 'Aviões'},
-    {to: '/link19', name: 'Política'},
-    {to: '/link20', name: 'Formula 1'},
-    {to: '/link21', name: 'Cursos'},
-    {to: '/link22', name: 'Animais incríveis'},
-    {to: '/link23', name: 'Infantil'},
-    {to: '/link24', name: 'Desenhos legais'},
-    {to: '/link25', name: 'Informática'},
-    {to: '/link26', name: 'Casal'},
-    {to: '/link27', name: 'Viagens'},
-    {to: '/link28', name: 'Aventura'},
-    {to: '/link29', name: 'Vlogs'},
-    {to: '/link30', name: 'Documentários'},
-    {to: '/link31', name: 'História da civilização'},
-    {to: '/link32', name: 'Ciências'},
-    {to: '/link33', name: 'Geografia'},
-    {to: '/link34', name: 'Quimica'},
-    {to: '/link35', name: 'Física'},
-  ]
+  const categoryButtons = [
+    {name: 'Tudo', id: '0'},
+    {name: 'Jogos', id: '20'},
+    {name: 'Esportes', id: '17'},
+    {name: 'Ciência e tecnologia', id: '28'},
+    {name: 'Música', id: '10'},
+    {name: 'Ao vivo agora', id: '44'},
+    {name: 'Streaming ao vivo', id: '151'},
+    {name: 'TV e filmes', id: '43'},
+    {name: 'Notícias e política', id: '25'},
+    {name: 'Séries e filmes', id: '24'},
+    {name: 'Comédia', id: '23'},
+    {name: 'Culinária', id: '26'},
+    {name: 'Como fazer e estilo', id: '27'},
+    {name: 'Restaurantes', id: '100'},
+    {name: 'DIY e artesanato', id: '107'},
+    {name: 'Viagens e eventos', id: '19'},
+    {name: 'Espiritualidade e religião', id: '29'},
+    {name: 'Aviação', id: '20'},
+    {name: 'Notícias e revistas', id: '25'},
+    {name: 'Automobilismo', id: '17'},
+    {name: 'Educação', id: '27'},
+    {name: 'Animais', id: '15'},
+    {name: 'Infantil', id: '1'},
+    {name: 'Animação', id: '1'},
+    {name: 'Tecnologia', id: '28'},
+    {name: 'casal', id: '22'},
+    {name: 'Viagens e lugares', id: '19'},
+    {name: 'Aventura', id: '26'},
+  ];
 
 
   return (
@@ -81,8 +74,8 @@ function CategoryBar() {
             transition: '0.5s ease-in-out',
 
         }}>
-        {links.map((link, index) => (
-          <CategoryLink link={link.to} name={link.name} key={index}/>
+        {categoryButtons.map((button, index) => (
+          <CategoryButton name={button.name} key={index}/>
         ))} 
         </SliderContent>
       </Slider>

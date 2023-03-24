@@ -1,11 +1,11 @@
-import VideoCard from "../../components/videosCards/videosCards";
-import { Container } from "./home-style";
+import { Container } from "./categories-style";
 import { useAppContext } from "../../contexts/openMenu";
-import { useState, useEffect } from "react";
-import axios from 'axios'
+import VideoCard from "../../components/videosCards/videosCards";
+import {useState, useEffect} from 'react';
+import axios from 'axios';
 import moment from "moment";
 
-function Home() {
+function Esportes() {
 
   interface Videos {
     id: string;
@@ -25,15 +25,13 @@ function Home() {
   }
 
   const [videos, setVideosapi] = useState<Videos[]>([]);
-  const [Idcategory, setIdCategory] = useState('0')
 
   useEffect(() => {
     load()
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [Idcategory]) 
+  }, []) 
 
-
-  const url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&chart=mostPopular&hl=pt_BR&maxResults=48&regionCode=br&videoCategoryId=${Idcategory}&key=AIzaSyDLJCiB55monK9yAkvBEvcX4CjUMVNKRcg`
+  const url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&chart=mostPopular&hl=pt_BR&maxResults=48&regionCode=br&videoCategoryId=17&key=AIzaSyDLJCiB55monK9yAkvBEvcX4CjUMVNKRcg`
 
   async function load() {
     try {
@@ -107,4 +105,4 @@ function Home() {
   )
 }
 
-export default Home;
+export default Esportes;

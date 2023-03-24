@@ -8,6 +8,8 @@ import Shorts from "./pages/shorts/shorts";
 import Subscribe from "./pages/subscribe/subscribe";
 import Library from "./pages/library/library";
 import CategoryBar from "./components/categoryBar/category-bar";
+import Jogos from "./pages/categories/jogos";
+import Esportes from "./pages/categories/esportes";
  
 function App() {
 
@@ -24,6 +26,8 @@ function App() {
             <Route path="/shorts" element={<Shorts />} />
             <Route path="/subscribe" element={<Subscribe />} />
             <Route path="/library" element={<Library />} />
+            <Route path="/jogos" element={<Jogos />} />
+            <Route path="/esportes" element={<Esportes />} />
           </Routes>
         </MainContainer>
       </div>

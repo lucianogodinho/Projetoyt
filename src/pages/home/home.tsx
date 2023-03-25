@@ -4,6 +4,7 @@ import { useAppContext } from "../../contexts/openMenu";
 import { useState, useEffect } from "react";
 import axios from 'axios'
 import moment from "moment";
+import { useCategoryContext } from "../../contexts/searchCategories";
 
 function Home() {
 
@@ -25,15 +26,15 @@ function Home() {
   }
 
   const [videos, setVideosapi] = useState<Videos[]>([]);
-  const [Idcategory, setIdCategory] = useState('0')
+  const {categoryId, setCategoryId} = useCategoryContext()
 
   useEffect(() => {
     load()
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [Idcategory]) 
+  }, [categoryId]) 
 
 
-  const url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&chart=mostPopular&hl=pt_BR&maxResults=48&regionCode=br&videoCategoryId=${Idcategory}&key=AIzaSyDLJCiB55monK9yAkvBEvcX4CjUMVNKRcg`
+  const url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&chart=mostPopular&hl=pt_BR&maxResults=48&regionCode=br&videoCategoryId=${categoryId}&key=AIzaSyDLJCiB55monK9yAkvBEvcX4CjUMVNKRcg`
 
   async function load() {
     try {

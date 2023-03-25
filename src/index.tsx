@@ -5,6 +5,7 @@ import App from './App';
 import { ThemeProvider } from 'styled-components';
 import { Theme } from './Theme';
 import { AppProvider } from './contexts/openMenu';
+import { CategoryProvider } from './contexts/searchCategories';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -14,7 +15,9 @@ root.render(
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
       <AppProvider>
-        <App />
+        <CategoryProvider>
+          <App />
+        </CategoryProvider>
       </AppProvider>
     </ThemeProvider>
   </React.StrictMode>

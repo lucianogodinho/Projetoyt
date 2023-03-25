@@ -1,9 +1,9 @@
-import { SliderButtons, ButtonIcon, Container, Slider, SliderContent } from "./category-bar-style";
+import { SliderButtons, ButtonIcon, Container, Slider, SliderContent, Button } from "./category-bar-style";
 import { useAppContext } from "../../contexts/openMenu";
 import BackIcon from '../../assets/back-button.png'
 import NextIcon from '../../assets/next-button.png'
-import CategoryButton from "./categoryLinks/category-button";
 import { useState } from "react";
+import { useCategoryContext } from "../../contexts/searchCategories";
 
 function CategoryBar() {
 
@@ -30,12 +30,12 @@ function CategoryBar() {
 
   const categoryButtons = [
     {name: 'Tudo', id: '0'},
-    {name: 'Jogos', id: '20'},
-    {name: 'Esportes', id: '17'},
-    {name: 'Ciência e tecnologia', id: '28'},
+    {name: 'Games', id: '20'},
+    {name: 'Futebol', id: '17'},
+    {name: 'Entretenimento', id: '28'},
     {name: 'Música', id: '10'},
-    {name: 'Ao vivo agora', id: '44'},
-    {name: 'Streaming ao vivo', id: '151'},
+    {name: 'Variedades', id: '22'},
+    {name: 'Automóveis e veículos', id: '2'},
     {name: 'TV e filmes', id: '43'},
     {name: 'Notícias e política', id: '25'},
     {name: 'Séries e filmes', id: '24'},
@@ -59,6 +59,12 @@ function CategoryBar() {
     {name: 'Aventura', id: '26'},
   ];
 
+  const {categoryId, setCategoryId} = useCategoryContext()
+
+  function searchCategory(id: string) {
+    setCategoryId(id)
+  }
+
 
   return (
 
@@ -75,7 +81,7 @@ function CategoryBar() {
 
         }}>
         {categoryButtons.map((button, index) => (
-          <CategoryButton name={button.name} key={index}/>
+          <Button onClick={() => searchCategory(button.id)} key={index}>{button.name}</Button>
         ))} 
         </SliderContent>
       </Slider>

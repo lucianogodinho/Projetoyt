@@ -13,6 +13,9 @@ function Home() {
     snippet: {
       title: string;
       thumbnails: {
+        high: {
+          url: string
+        }
         maxres: {
           url: string;
         }
@@ -40,6 +43,7 @@ function Home() {
     try {
       const resposta = await axios.get(url)
       setVideosapi(resposta.data.items)
+      console.log(resposta.data.items)
     }catch(erro){
       console.log(erro)
     }
@@ -97,7 +101,7 @@ function Home() {
       {videos.map((video) => (
         <VideoCard 
         title={video.snippet.title} 
-        thumbnail={video.snippet.thumbnails.maxres?.url} 
+        thumbnail={video.snippet.thumbnails.maxres?.url || video.snippet.thumbnails.high?.url} 
         channelImage={video.snippet.channelTitle.charAt(0).toUpperCase()} 
         channelName={video.snippet.channelTitle}
         details={`${formatViewCount(Number(video.statistics.viewCount))} - ${getPublishedTime(video.snippet.publishedAt)}`} 

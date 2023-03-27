@@ -26,7 +26,7 @@ function Home() {
   }
 
   const [videos, setVideosapi] = useState<Videos[]>([]);
-  const {categoryId, setCategoryId} = useCategoryContext()
+  const {categoryId} = useCategoryContext()
 
   useEffect(() => {
     load()

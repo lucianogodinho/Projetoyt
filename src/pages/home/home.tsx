@@ -1,10 +1,11 @@
 import VideoCard from "../../components/videosCards/videosCards";
-import { Container } from "./home-style";
+import { Container, MainContainer } from "./home-style";
 import { useAppContext } from "../../contexts/openMenu";
 import { useState, useEffect } from "react";
 import axios from 'axios'
 import moment from "moment";
 import { useCategoryContext } from "../../contexts/searchCategories";
+import ShortsSection from "../../components/shorts-section/shorts-section";
 
 function Home() {
 
@@ -43,7 +44,6 @@ function Home() {
     try {
       const resposta = await axios.get(url)
       setVideosapi(resposta.data.items)
-      console.log(resposta.data.items)
     }catch(erro){
       console.log(erro)
     }
@@ -97,18 +97,24 @@ function Home() {
   const { openMenu } = useAppContext();
 
   return (
-    <Container openMenu={openMenu}>
-      {videos.map((video) => (
-        <VideoCard 
-        title={video.snippet.title} 
-        thumbnail={video.snippet.thumbnails.maxres?.url || video.snippet.thumbnails.high?.url} 
-        channelImage={video.snippet.channelTitle.charAt(0).toUpperCase()} 
-        channelName={video.snippet.channelTitle}
-        details={`${formatViewCount(Number(video.statistics.viewCount))} - ${getPublishedTime(video.snippet.publishedAt)}`} 
-        key={video.id}
-        />
-      ))}
-    </Container>
+    <MainContainer openMenu={openMenu}>
+
+      <Container openMenu={openMenu}>
+        {videos.map((video) => (
+          <VideoCard 
+          title={video.snippet.title} 
+          thumbnail={video.snippet.thumbnails.maxres?.url || video.snippet.thumbnails.high?.url} 
+          channelImage={video.snippet.channelTitle.charAt(0).toUpperCase()} 
+          channelName={video.snippet.channelTitle}
+          details={`${formatViewCount(Number(video.statistics.viewCount))} - ${getPublishedTime(video.snippet.publishedAt)}`} 
+          key={video.id}
+          />
+        ))}
+      </Container>
+
+      <ShortsSection />
+
+    </MainContainer>
   )
 }
 

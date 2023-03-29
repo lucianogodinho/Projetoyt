@@ -9,6 +9,7 @@ export const MainContainer = styled.div`
   flex-direction: column;
   width: 100%;
   height: 530px;
+  margin-bottom: 50px;
 `;
 
 export const Container = styled.div`

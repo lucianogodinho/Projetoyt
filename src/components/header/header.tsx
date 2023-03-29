@@ -18,15 +18,22 @@ import Mic from '../../assets/microfone.png'
 import Sino from '../../assets/sino.png'
 import Video from '../../assets/videoicon.png'
 import { useAppContext } from "../../contexts/openMenu";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/userContext";
 
 
 const Header: React.FC = () => {
 
   const { openMenu, setOpenMenu } = useAppContext();
 
+  const navigate = useNavigate();
+
   const handleMenuClick = () => {
     setOpenMenu(!openMenu);
   };
+
+  const { login, logOut, user } = useContext(UserContext)
 
   return (
     <Container>
@@ -69,9 +76,16 @@ const Header: React.FC = () => {
           <ButtonIcon alt="ícone notificação" src={Sino}/>
         </ButtonContainer>
 
-        <ButtonContainer margin='0 0 0 10px'>
-          R
-        </ButtonContainer>
+        {login?
+          <>
+            <ButtonContainer margin='0 0 0 10px'>
+              {user.nome[0].toUpperCase()}
+            </ButtonContainer>
+            <span onClick={() => logOut()}>Sair</span>
+          </> 
+          :
+          <button onClick={() => navigate('/login')}>Fazer Login</button>
+        }
 
       </HeaderButtons>
 

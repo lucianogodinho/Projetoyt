@@ -8,26 +8,31 @@ import Shorts from "./pages/shorts/shorts";
 import Subscribe from "./pages/subscribe/subscribe";
 import Library from "./pages/library/library";
 import CategoryBar from "./components/categoryBar/category-bar";
+import { UserStorage } from "./contexts/userContext";
+import Login from "./pages/login/login";
  
 function App() {
 
 
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Header />
-        <MainContainer>
-          <Menu />
-          <CategoryBar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/shorts" element={<Shorts />} />
-            <Route path="/subscribe" element={<Subscribe />} />
-            <Route path="/library" element={<Library />} />
-          </Routes>
-        </MainContainer>
-      </div>
-    </BrowserRouter>
+    <UserStorage>
+      <BrowserRouter>
+        <div className="App">
+          <Header />
+          <MainContainer>
+            <Menu />
+            <CategoryBar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/shorts" element={<Shorts />} />
+              <Route path="/subscribe" element={<Subscribe />} />
+              <Route path="/library" element={<Library />} />
+              <Route path="/login" element={<Login />} />
+            </Routes>
+          </MainContainer>
+        </div>
+      </BrowserRouter>
+    </UserStorage>
   );
 }
 

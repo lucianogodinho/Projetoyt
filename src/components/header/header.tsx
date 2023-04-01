@@ -9,7 +9,11 @@ import {
   SearchInput,
   SearchButton,
   HeaderButtons, 
-  LinkLogo
+  LinkLogo,
+  LoginContainer,
+  LoginButton,
+  Span,
+  LoginIcon
 } from "./header-style";
 import Menu from '../../assets/menu.png'
 import Logoyt from '../../assets/logoyoutube.png'
@@ -21,6 +25,7 @@ import { useAppContext } from "../../contexts/openMenu";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/userContext";
+import LoginIconPng from '../../assets/login-icon.png'
 
 
 const Header: React.FC = () => {
@@ -66,31 +71,36 @@ const Header: React.FC = () => {
 
       </SearchContainer>
 
-      <HeaderButtons>
+      {login?
+        <HeaderButtons>
+          <ButtonContainer margin='0 0 0 10px'>
+            <ButtonIcon alt="ícone vídeo" src={Video}/>
+          </ButtonContainer>
 
-        <ButtonContainer margin='0 0 0 10px'>
-          <ButtonIcon alt="ícone vídeo" src={Video}/>
-        </ButtonContainer>
+          <ButtonContainer margin='0 0 0 10px'>
+            <ButtonIcon alt="ícone notificação" src={Sino}/>
+          </ButtonContainer>
 
-        <ButtonContainer margin='0 0 0 10px'>
-          <ButtonIcon alt="ícone notificação" src={Sino}/>
-        </ButtonContainer>
+          <ButtonContainer margin='0 0 0 10px'>
+            {user?.nome[0].toUpperCase()}
+          </ButtonContainer>
+          <span onClick={() => logOut()}>Sair</span>
+        </HeaderButtons>
+        :
+        <LoginContainer onClick={() => navigate('/login')}>
+          <LoginButton>
+            <LoginIcon alt="Login Icon" src={LoginIconPng} />
+            <Span>Fazer login</Span>
+          </LoginButton>
+        </LoginContainer>
+      }
 
-        {login?
-          <>
-            <ButtonContainer margin='0 0 0 10px'>
-              {user.nome[0].toUpperCase()}
-            </ButtonContainer>
-            <span onClick={() => logOut()}>Sair</span>
-          </> 
-          :
-          <button onClick={() => navigate('/login')}>Fazer Login</button>
-        }
-
-      </HeaderButtons>
 
     </Container>
   )
 }
 
 export default Header;
+
+//
+//<span onClick={() => logOut()}>Sair</span>

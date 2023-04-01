@@ -88,3 +88,41 @@ export const HeaderButtons = styled.div`
   width: 200px;
   display: flex;
 `;
+
+export const LoginContainer = styled.div`
+  width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 7px;
+  cursor: pointer;
+`;
+
+export const LoginButton = styled.div`
+  width: 100%;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+  border: 1px solid ${({theme}) => theme.colors.borderColor};
+  border-radius: 20px;
+
+  &:hover{
+    background-color: aliceblue;
+  }
+`;
+
+export const Span = styled.span`
+  font-size: 14px;
+  font-weight: 500;
+  color: blue;
+  opacity: 0.9;
+`;
+
+export const LoginIcon = styled.img`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+`;

@@ -15,8 +15,8 @@ function App() {
 
 
   return (
-    <UserStorage>
-      <BrowserRouter>
+    <BrowserRouter>
+      <UserStorage>
         <div className="App">
           <Header />
           <MainContainer>
@@ -31,8 +31,8 @@ function App() {
             </Routes>
           </MainContainer>
         </div>
-      </BrowserRouter>
-    </UserStorage>
+      </UserStorage>
+    </BrowserRouter>
   );
 }
 

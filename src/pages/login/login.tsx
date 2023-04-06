@@ -2,7 +2,6 @@ import { Container, EmailInput, LoginButton, LoginContainer, MainContainer, Pass
 import { useAppContext } from "../../contexts/openMenu";
 import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/userContext";
-import { useNavigate } from "react-router-dom";
 
 function Login() {
 
@@ -13,8 +12,6 @@ function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const navigate = useNavigate()
-
   return (
     <MainContainer openMenu={openMenu}>
       <Container openMenu={openMenu}>
@@ -23,7 +20,6 @@ function Login() {
           <PasswordInput type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
           <LoginButton onClick={() => {
             handleLogin(email, password)
-            navigate('/')
           }}>Login</LoginButton>
         </LoginContainer>
       </Container>

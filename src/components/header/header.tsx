@@ -82,7 +82,7 @@ const Header: React.FC = () => {
           </ButtonContainer>
 
           <ButtonContainer margin='0 0 0 10px'>
-            {user?.nome[0].toUpperCase()}
+            {user && user.nome ? user.nome.charAt(0).toUpperCase() : ''}
           </ButtonContainer>
           <span onClick={() => logOut()}>Sair</span>
         </HeaderButtons>

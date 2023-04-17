@@ -13,7 +13,12 @@ import {
   LoginContainer,
   LoginButton,
   Span,
-  LoginIcon
+  LoginIcon,
+  DropDownMenu,
+  DropDownMenuContent,
+  LogOutButton,
+  UserInfoContainer,
+  UserName
 } from "./header-style";
 import Menu from '../../assets/menu.png'
 import Logoyt from '../../assets/logoyoutube.png'
@@ -21,11 +26,13 @@ import Lupa from '../../assets/search.png'
 import Mic from '../../assets/microfone.png'
 import Sino from '../../assets/sino.png'
 import Video from '../../assets/videoicon.png'
+import logout from '../../assets/logout.png'
+import LoginIconPng from '../../assets/login-icon.png'
+import VideoIcon from '../../assets/video.png'
 import { useAppContext } from "../../contexts/openMenu";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/userContext";
-import LoginIconPng from '../../assets/login-icon.png'
 
 
 const Header: React.FC = () => {
@@ -39,6 +46,12 @@ const Header: React.FC = () => {
   };
 
   const { login, logOut, user } = useContext(UserContext)
+
+  const [openDropDownMenu, setOpenDropDownMenu] = useState(false)
+
+  const handleDropDownMenu = () => {
+    setOpenDropDownMenu(!openDropDownMenu)
+  }
 
   return (
     <Container>
@@ -81,10 +94,47 @@ const Header: React.FC = () => {
             <ButtonIcon alt="ícone notificação" src={Sino}/>
           </ButtonContainer>
 
-          <ButtonContainer margin='0 0 0 10px'>
+          <ButtonContainer margin='0 0 0 10px' onClick={handleDropDownMenu}>
             {user && user.nome ? user.nome.charAt(0).toUpperCase() : ''}
           </ButtonContainer>
-          <span onClick={() => logOut()}>Sair</span>
+          
+          <DropDownMenu openDropDownMenu={openDropDownMenu}>
+
+            <UserInfoContainer>
+              <ButtonContainer 
+              margin='0 0 0 10px' 
+              onClick={handleDropDownMenu} 
+              style={{backgroundColor: '#f2f2f2'}}
+              >
+                {user && user.nome ? user.nome.charAt(0).toUpperCase() : ''}
+              </ButtonContainer>
+              <UserName>{user && user.nome ? user.nome : ''}</UserName>
+            </UserInfoContainer>
+
+            <DropDownMenuContent>
+              <ButtonIcon alt="ícone logout" src={logout} />
+              <LogOutButton 
+                onClick={() => {
+                  logOut()
+                  handleDropDownMenu()
+                }}>
+                Sair
+              </LogOutButton>
+            </DropDownMenuContent>
+
+            <DropDownMenuContent>
+              <ButtonIcon alt="ícone logout" src={VideoIcon} />
+              <LogOutButton 
+                onClick={() => {
+                  navigate('/yourvideos')
+                  handleDropDownMenu()
+                }}>
+                Seus vídeos
+              </LogOutButton>
+            </DropDownMenuContent>
+
+          </DropDownMenu>
+
         </HeaderButtons>
         :
         <LoginContainer onClick={() => navigate('/login')}>

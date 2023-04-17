@@ -13,6 +13,7 @@ export const Container = styled.div<ContainerProps>`
   display: flex;
   align-items: center;
   background-color: ${({theme}) => theme.colors.secondary};
+  z-index: 1;
 `;
 
 export const Button = styled.button`

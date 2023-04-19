@@ -33,6 +33,8 @@ import { useAppContext } from "../../contexts/openMenu";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/userContext";
+import { useSearchContext } from "../../contexts/searchContext";
+
 
 
 const Header: React.FC = () => {
@@ -53,6 +55,14 @@ const Header: React.FC = () => {
     setOpenDropDownMenu(!openDropDownMenu)
   }
 
+  const {setSearch} = useSearchContext()
+
+  const [inputValue, setInputValue] = useState('')
+
+  function handleInput(inputValue: string) {
+    setInputValue(inputValue)
+  }
+
   return (
     <Container>
 
@@ -71,10 +81,15 @@ const Header: React.FC = () => {
       <SearchContainer>
 
         <SearchInputContainer>
-          <SearchInput placeholder="Pesquisar"/>
+          <SearchInput placeholder="Pesquisar" onChange={(e) => handleInput(e.target.value)}/>
         </SearchInputContainer>
 
-        <SearchButton>
+        <SearchButton 
+          onClick={() => {
+            setSearch(inputValue)
+            navigate('/search')
+          }
+        }>
           <ButtonIcon alt="ícone lupa" src={Lupa}/>
         </SearchButton>
 

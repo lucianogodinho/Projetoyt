@@ -5,6 +5,10 @@ interface ContainerProps {
   openDropDownMenu: boolean;
 }
 
+interface ClearButtonProps {
+  clearButton: boolean;
+}
+
 export const Container = styled.header`
   width: 100%;
   height: 55px;
@@ -178,4 +182,23 @@ export const LogOutButton = styled.button`
   font-size: 0.9rem;
   font-weight: 300;
   background-color: inherit;
+`;
+export const ClearButton = styled.button<ClearButtonProps>`
+  display: ${({clearButton}) => clearButton? 'flex' : 'none'};
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: .4s;
+  background-color: ${({theme}) => theme.colors.secondary};
+
+  &:hover{
+    background-color: ${({theme}) => theme.colors.borderColor};
+  }
+`;
+export const CloseImg = styled.img`
+  width: 15px;
 `;

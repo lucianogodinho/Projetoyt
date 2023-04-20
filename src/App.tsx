@@ -7,7 +7,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Shorts from "./pages/shorts/shorts";
 import Subscribe from "./pages/subscribe/subscribe";
 import Library from "./pages/library/library";
-import CategoryBar from "./components/categoryBar/category-bar";
 import { UserStorage } from "./contexts/userContext";
 import Login from "./pages/login/login";
 import YourVideos from "./pages/your-videos/your-videos";
@@ -23,7 +22,6 @@ function App() {
           <Header />
           <MainContainer>
             <Menu />
-            <CategoryBar />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/shorts" element={<Shorts />} />

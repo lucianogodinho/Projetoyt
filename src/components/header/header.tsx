@@ -18,7 +18,9 @@ import {
   DropDownMenuContent,
   LogOutButton,
   UserInfoContainer,
-  UserName
+  UserName,
+  ClearButton,
+  CloseImg
 } from "./header-style";
 import Menu from '../../assets/menu.png'
 import Logoyt from '../../assets/logoyoutube.png'
@@ -29,9 +31,10 @@ import Video from '../../assets/videoicon.png'
 import logout from '../../assets/logout.png'
 import LoginIconPng from '../../assets/login-icon.png'
 import VideoIcon from '../../assets/video.png'
+import CloseIcon from '../../assets/close.png'
 import { useAppContext } from "../../contexts/openMenu";
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { UserContext } from "../../contexts/userContext";
 import { useSearchContext } from "../../contexts/searchContext";
 
@@ -40,6 +43,8 @@ import { useSearchContext } from "../../contexts/searchContext";
 const Header: React.FC = () => {
 
   const { openMenu, setOpenMenu } = useAppContext();
+
+  const [clearButton, setClearButton] = useState(false)
 
   const navigate = useNavigate();
 
@@ -61,7 +66,23 @@ const Header: React.FC = () => {
 
   function handleInput(inputValue: string) {
     setInputValue(inputValue)
+    if(inputValue === '') {
+      setClearButton(false)
+    } else (
+      setClearButton(true)
+    )
   }
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const clearInput = () => {
+    setInputValue('')
+    setClearButton(false)
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }
+
 
   return (
     <Container>
@@ -81,11 +102,36 @@ const Header: React.FC = () => {
       <SearchContainer>
 
         <SearchInputContainer>
-          <SearchInput placeholder="Pesquisar" onChange={(e) => handleInput(e.target.value)}/>
+          <SearchInput
+            ref={inputRef}
+            value={inputValue} 
+            placeholder="Pesquisar" 
+            onChange={(e) => {
+              handleInput(e.target.value)
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                setSearch(inputValue)
+                navigate('/search')
+              }
+            }}
+          />
+          <ClearButton 
+            clearButton={clearButton}
+            onClick={clearInput}
+          >
+
+            <CloseImg src={CloseIcon}/>
+            
+          </ClearButton>
         </SearchInputContainer>
 
         <SearchButton 
           onClick={() => {
+            if (inputValue.trim() === '') {
+              alert('Digite alguma palavra chave antes de tentar pesquisar')
+              return;
+            }
             setSearch(inputValue)
             navigate('/search')
           }

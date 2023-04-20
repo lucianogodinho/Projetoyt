@@ -6,6 +6,7 @@ import axios from 'axios'
 import moment from "moment";
 import { useCategoryContext } from "../../contexts/searchCategories";
 import ShortsSection from "../../components/shorts-section/shorts-section";
+import CategoryBar from "../../components/categoryBar/category-bar";
 
 function Home() {
 
@@ -98,7 +99,7 @@ function Home() {
 
   return (
     <MainContainer openMenu={openMenu}>
-
+      <CategoryBar />
       <Container openMenu={openMenu}>
         {videos.map((video) => (
           <VideoCard 

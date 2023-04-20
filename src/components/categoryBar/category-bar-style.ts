@@ -5,7 +5,7 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  width: ${({openMenu}) => openMenu? '82%' : '94%'};
+  width: ${({openMenu}) => openMenu? '82%' : '93%'};
   height: 56px;
   position: fixed;
   top: 55px;

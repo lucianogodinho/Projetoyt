@@ -10,6 +10,6 @@ export const Container = styled.div<ContainerProps>`
   display: flex;
   flex-direction: column;
   row-gap: 20px;
-  padding: ${({openMenu}) => openMenu? '140px 50px 0 330px' : '140px 10px 0 100px'};
+  padding: ${({openMenu}) => openMenu? '100px 50px 0 330px' : '100px 10px 0 100px'};
   box-sizing: border-box;
 `;

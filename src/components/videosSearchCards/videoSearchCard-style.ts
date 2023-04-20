@@ -7,23 +7,28 @@ export const Container = styled.div`
   column-gap: 10px;
 `;
 
-export const Banner = styled.img`
-  width: 50%;
-  height: 180px;
+export const Banner = styled.div`
+  min-width: 300px;
+  max-width: 300px;
+  height: 160px;
   border-radius: 12px;
+  background-size: cover;
+  background-position: 50% 50%;
 `
 
 export const TitleContainer = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
 `;
 
 export const ChannelImage = styled.div`
   background-color: beige;
-  min-width: 40px;
-  max-width: 40px;
-  min-height: 40px;
-  max-height: 40px;
+  min-width: 25px;
+  max-width: 25px;
+  min-height: 25px;
+  max-height: 25px;
+  font-size: 12px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -36,12 +41,18 @@ export const TextContainer = styled.div`
   flex-direction: column;
 `;
 
+export const ChannelContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+`;
+
 export const Title = styled.span`
-  font-weight: 600;
+  font-weight: 500;
   color: #0f0f0f;
 `;
 
 export const TextCard = styled.span`
   color: #8c8c8c;
-  font-size: 14px;
+  font-size: 11px;
 `;

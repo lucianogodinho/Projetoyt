@@ -19,6 +19,9 @@ export const MainContainer = styled.div<ContainerProps>`
   max-width: 1600px;
   display: flex;
   flex-direction: column;
-  padding: ${({openMenu}) => openMenu? '140px 50px 0 330px' : '140px 10px 0 100px'};
+  padding: ${({openMenu}) => openMenu? '140px 50px 0 290px' : '140px 10px 0 100px'};
   box-sizing: border-box;
+`;
+export const HomeContainer = styled.div`
+  width: 100%;
 `;

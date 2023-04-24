@@ -1,5 +1,5 @@
 import VideoCard from "../../components/videosCards/videosCards";
-import { Container, MainContainer } from "./home-style";
+import { Container, HomeContainer, MainContainer } from "./home-style";
 import { useAppContext } from "../../contexts/openMenu";
 import { useState, useEffect } from "react";
 import axios from 'axios'
@@ -7,6 +7,8 @@ import moment from "moment";
 import { useCategoryContext } from "../../contexts/searchCategories";
 import ShortsSection from "../../components/shorts-section/shorts-section";
 import CategoryBar from "../../components/categoryBar/category-bar";
+import Header from "../../components/header/header";
+import Menu from "../../components/menu/menu";
 
 function Home() {
 
@@ -98,24 +100,29 @@ function Home() {
   const { openMenu } = useAppContext();
 
   return (
-    <MainContainer openMenu={openMenu}>
-      <CategoryBar />
-      <Container openMenu={openMenu}>
-        {videos.map((video) => (
-          <VideoCard 
-          title={video.snippet.title} 
-          thumbnail={video.snippet.thumbnails.maxres?.url || video.snippet.thumbnails.high?.url} 
-          channelImage={video.snippet.channelTitle.charAt(0).toUpperCase()} 
-          channelName={video.snippet.channelTitle}
-          details={`${formatViewCount(Number(video.statistics.viewCount))} - ${getPublishedTime(video.snippet.publishedAt)}`} 
-          key={video.id}
-          />
-        ))}
-      </Container>
+    <HomeContainer>
+      <Header />
+      <Menu />
+      <MainContainer openMenu={openMenu}>
+        <CategoryBar />
+        <Container openMenu={openMenu}>
+          {videos.map((video) => (
+            <VideoCard 
+            title={video.snippet.title} 
+            thumbnail={video.snippet.thumbnails.maxres?.url || video.snippet.thumbnails.high?.url} 
+            channelImage={video.snippet.channelTitle.charAt(0).toUpperCase()} 
+            channelName={video.snippet.channelTitle}
+            details={`${formatViewCount(Number(video.statistics.viewCount))} - ${getPublishedTime(video.snippet.publishedAt)}`} 
+            key={video.id}
+            />
+          ))}
+        </Container>
 
-      <ShortsSection />
+        <ShortsSection />
 
-    </MainContainer>
+      </MainContainer>
+
+    </HomeContainer>  
   )
 }
 

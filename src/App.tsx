@@ -1,7 +1,5 @@
-import Header from "./components/header/header";
 import './App-style'
 import { MainContainer } from "./App-style";
-import Menu from "./components/menu/menu";
 import Home from "./pages/home/home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Shorts from "./pages/shorts/shorts";
@@ -19,9 +17,7 @@ function App() {
     <BrowserRouter>
       <UserStorage>
         <div className="App">
-          <Header />
           <MainContainer>
-            <Menu />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/shorts" element={<Shorts />} />

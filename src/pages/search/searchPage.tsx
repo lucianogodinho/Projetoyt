@@ -1,10 +1,12 @@
-import { Container } from "./searchPage-style";
+import { Container, SearchContainer } from "./searchPage-style";
 import { useAppContext } from "../../contexts/openMenu";
 import { useSearchContext } from "../../contexts/searchContext";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import moment from "moment";
 import VideoSearchCard from "../../components/videosSearchCards/videoSearchCard";
+import Header from "../../components/header/header";
+import Menu from "../../components/menu/menu";
 
 function SearchPage() {
 
@@ -22,6 +24,7 @@ function SearchPage() {
       }
       channelTitle: string;
       publishedAt: string;
+      description: string;
     }
   }
 
@@ -83,18 +86,23 @@ function SearchPage() {
 
 
   return (
-    <Container openMenu={openMenu}>
-       {videos.map((video) => (
-          <VideoSearchCard
-          title={video.snippet.title} 
-          thumbnail={video.snippet.thumbnails.high?.url} 
-          channelImage={video.snippet.channelTitle.charAt(0).toUpperCase()} 
-          channelName={video.snippet.channelTitle}
-          details={`10 mil visualizações - ${getPublishedTime(video.snippet.publishedAt)}`} 
-          key={video.id.videoId}
-          />
-        ))}
-    </Container>
+    <SearchContainer>
+      <Header />
+      <Menu />
+      <Container openMenu={openMenu}>
+        {videos.map((video) => (
+            <VideoSearchCard
+            title={video.snippet.title} 
+            thumbnail={video.snippet.thumbnails.high?.url} 
+            channelImage={video.snippet.channelTitle.charAt(0).toUpperCase()} 
+            channelName={video.snippet.channelTitle}
+            details={`10 mil visualizações - ${getPublishedTime(video.snippet.publishedAt)}`}
+            description={video.snippet.description} 
+            key={video.id.videoId}
+            />
+          ))}
+      </Container>
+    </SearchContainer>
   )
 }
 

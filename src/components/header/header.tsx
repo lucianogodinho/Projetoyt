@@ -37,6 +37,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useRef, useState } from "react";
 import { UserContext } from "../../contexts/userContext";
 import { useSearchContext } from "../../contexts/searchContext";
+import { useCategoryContext } from "../../contexts/searchCategories";
 
 
 
@@ -83,6 +84,8 @@ const Header: React.FC = () => {
     }
   }
 
+  const {setCategoryId} = useCategoryContext()
+
 
   return (
     <Container>
@@ -93,7 +96,7 @@ const Header: React.FC = () => {
           <ButtonIcon alt="logo menu" src={Menu}/>
         </ButtonContainer>
 
-        <LinkLogo to='/'>
+        <LinkLogo to='/' onClick={() => setCategoryId('0')}>
           <Logo alt="logo youtube" src={Logoyt} />
         </LinkLogo>
 
@@ -212,6 +215,3 @@ const Header: React.FC = () => {
 }
 
 export default Header;
-
-//
-//<span onClick={() => logOut()}>Sair</span>

@@ -15,3 +15,6 @@ export const Container = styled.div<ContainerProps>`
   padding: ${({openMenu}) => openMenu? '140px 50px 0 330px' : '140px 10px 0 100px'};
   box-sizing: border-box;
 `;
+export const LibraryContainer = styled.div`
+  width: 100%;
+`;

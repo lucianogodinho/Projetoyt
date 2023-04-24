@@ -56,3 +56,12 @@ export const TextCard = styled.span`
   color: #8c8c8c;
   font-size: 11px;
 `;
+export const DescriptionContainer = styled.div`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
+  margin-top: 20px;
+  text-align: justify;
+`;

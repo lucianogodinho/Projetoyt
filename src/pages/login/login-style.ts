@@ -1,48 +1,129 @@
 import styled from "styled-components";
 
-interface ContainerProps {
-  openMenu: boolean;
+interface ValidEmailProps {
+  validEmail: boolean
 }
 
-export const MainContainer = styled.div<ContainerProps>`
-  width: 100%;
-  max-width: 1600px;
-  display: flex;
-  flex-direction: column;
-  padding: ${({openMenu}) => openMenu? '140px 50px 0 330px' : '140px 10px 0 100px'};
-  box-sizing: border-box;
-`;
+interface ValidPasswordProps {
+  validPassword: boolean
+}
 
-export const Container = styled.div<ContainerProps>`
+interface invalidMessageProps {
+  invalid: boolean
+}
+
+export const MainContainer = styled.div`
   width: 100%;
+  height: 100vh;
   max-width: 1600px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 `;
 
 export const LoginContainer = styled.div`
-  width: 300px;
-  height: 400px;
-  border: 1px solid black;
+  width: 480px;
+  height: 530px;
+  border: 1px solid ${({theme}) => theme.colors.borderColor};
   border-radius: 10px;
-  box-shadow: -5px 5px 5px 5px rgba(0, 0, 0, 0.8);
   background-color: ${({theme}) => theme.colors.secondary};
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 10px;
+  padding: 60px 45px;
+  box-sizing: border-box;
 `;
 
-export const EmailInput = styled.input`
-
+export const GoogleLogo = styled.img`
+  width: 70px;
+  height: 25px;
+`;
+export const Title = styled.h2`
+  color: ${({theme}) => theme.colors.primary};
+  font-weight: 400;
+  margin: 10px 0;
+`;
+export const SubTitle = styled.h4`
+  color: ${({theme}) => theme.colors.primary};
+  font-weight: 400;
+  font-size: 1.1rem;
+  margin: 0 0 30px 0;
 `;
 
-export const PasswordInput = styled.input`
+export const EmailInput = styled.input<ValidEmailProps>`
+  width: 100%;
+  height: 50px;
+  border: ${({validEmail}) => validEmail? '1px solid #d3d3d3' : '1px solid red'};
+  border-radius: 5px;
+  font-size: 17px;
+  padding: 0 10px;
+  box-sizing: border-box;
 
+  &:focus {
+    border-color: ${({validEmail}) => validEmail? '#1a75ff' : 'red'};
+    border-width: 2px;
+    outline: none;
+  }
+`;
+
+export const MessageContainer = styled.div`
+  width: 100%;
+`;
+
+export const InvalidEmailMessage = styled.span<invalidMessageProps>`
+  display: ${({invalid}) => invalid? 'none' : 'block'};
+  font-size: 14px;
+  color: red;
+`;
+
+export const InvalidPasswordMessage = styled.span<invalidMessageProps>`
+  display: ${({invalid}) => invalid? 'none' : 'block'};
+  font-size: 14px;
+  color: red;
+`;
+
+export const PasswordInput = styled.input<ValidPasswordProps>`
+  width: 100%;
+  height: 50px;
+  border: ${({validPassword}) => validPassword? '1px solid #d3d3d3' : '1px solid red'};
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 17px;
+  padding: 0 10px;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: ${({validPassword}) => validPassword? '#1a75ff' : 'red'};
+    border-width: 2px;
+    outline: none;
+  }
+`;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 50px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  box-sizing: border-box;
+`;
+
+export const SignUp = styled.span`
+  color:  #1a75ff;
+  font-weight: 600;
+  cursor: pointer;
 `;
 
 export const LoginButton = styled.button`
-  width: 60px;
-  height: 20px;
+  width: 100px;
+  height: 100%;
+  border: none;
+  background-color: #1a75ff;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
 `;

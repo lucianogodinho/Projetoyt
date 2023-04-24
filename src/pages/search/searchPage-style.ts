@@ -13,3 +13,6 @@ export const Container = styled.div<ContainerProps>`
   padding: ${({openMenu}) => openMenu? '100px 50px 0 330px' : '100px 10px 0 100px'};
   box-sizing: border-box;
 `;
+export const SearchContainer = styled.div`
+  width: 100%;
+`;

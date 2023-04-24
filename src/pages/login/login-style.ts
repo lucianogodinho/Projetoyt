@@ -108,6 +108,7 @@ export const ButtonsContainer = styled.div`
   align-items: center;
   padding: 8px 0;
   box-sizing: border-box;
+  margin-top: 30px;
 `;
 
 export const SignUp = styled.span`
@@ -126,4 +127,12 @@ export const LoginButton = styled.button`
   font-weight: 600;
   font-size: 0.8rem;
   cursor: pointer;
+`;
+
+export const CheckBoxContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  margin-top: 5px;
 `;

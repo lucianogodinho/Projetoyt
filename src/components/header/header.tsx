@@ -34,7 +34,7 @@ import VideoIcon from '../../assets/video.png'
 import CloseIcon from '../../assets/close.png'
 import { useAppContext } from "../../contexts/openMenu";
 import { useNavigate } from "react-router-dom";
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef, useState} from "react";
 import { UserContext } from "../../contexts/userContext";
 import { useSearchContext } from "../../contexts/searchContext";
 import { useCategoryContext } from "../../contexts/searchCategories";

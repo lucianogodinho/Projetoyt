@@ -2,8 +2,10 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 export const CardVideo = styled(NavLink)`
-  width: 180px;
-  height: 380px;
+  min-width: 160px;
+  min-height: 380px;
+  max-width: 160px;
+  max-height: 380px;
   display: flex;
   flex-direction: column;
   row-gap: 10px;

@@ -1,4 +1,4 @@
-import { ButtonsContainer, EmailInput, GoogleLogo, InvalidEmailMessage, InvalidPasswordMessage, LoginButton, LoginContainer, MainContainer, MessageContainer, PasswordInput, SignUp, SubTitle, Title } from "./login-style";
+import { ButtonsContainer, CheckBoxContainer, EmailInput, GoogleLogo, InvalidEmailMessage, InvalidPasswordMessage, LoginButton, LoginContainer, MainContainer, MessageContainer, PasswordInput, SignUp, SubTitle, Title } from "./login-style";
 import { useContext, useState, useRef } from "react";
 import { UserContext } from "../../contexts/userContext";
 import googleLogo from '../../assets/google-logo.png'
@@ -38,6 +38,13 @@ function Login() {
     }
   }
 
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  }
+
+
   return (
     <MainContainer>
       <LoginContainer>
@@ -50,6 +57,12 @@ function Login() {
           onChange={(e) => setEmail(e.target.value)} 
           validEmail={validEmail}
           ref={emailRef}
+          placeholder="E-mail"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              userLogin()
+            }
+          }}
         />
         <MessageContainer>
           <InvalidEmailMessage invalid={validEmail}>
@@ -57,17 +70,28 @@ function Login() {
           </InvalidEmailMessage>
         </MessageContainer>
         <PasswordInput 
-          type='password' 
+          type={showPassword? 'text' : 'password'} 
           value={password} 
           onChange={(e) => setPassword(e.target.value)}
+          onKeyDown={(e) => {
+            if(e.key === 'Enter') {
+              userLogin()
+            }
+          }}
           ref={passwordRef}
-          validPassword={validPassword} 
+          validPassword={validPassword}
+          placeholder="Senha"
+          maxLength={8} 
         />
         <MessageContainer>
           <InvalidPasswordMessage invalid={validPassword}>
             Digite a sua senha
           </InvalidPasswordMessage>
         </MessageContainer>
+        <CheckBoxContainer>
+          <input type="checkbox" id="show-password" checked={showPassword} onChange={handleShowPassword} />
+          <label htmlFor="show-password">Mostrar senha</label>
+        </CheckBoxContainer>
         <ButtonsContainer>
           <SignUp onClick={() => navigate('/sign-up')}>
             Criar conta

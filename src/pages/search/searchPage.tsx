@@ -96,7 +96,7 @@ function SearchPage() {
             thumbnail={video.snippet.thumbnails.high?.url} 
             channelImage={video.snippet.channelTitle.charAt(0).toUpperCase()} 
             channelName={video.snippet.channelTitle}
-            details={`10 mil visualizações - ${getPublishedTime(video.snippet.publishedAt)}`}
+            details={`10 mi visualizações - ${getPublishedTime(video.snippet.publishedAt)}`}
             description={video.snippet.description} 
             key={video.id.videoId}
             />

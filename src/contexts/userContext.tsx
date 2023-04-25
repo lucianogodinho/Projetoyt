@@ -42,6 +42,17 @@ export const UserStorage = ({children} : any) => {
       alert('Usuário ou senha incorretos. Verifique os dados e tente novamente.')
     })
   }
+
+  const handleCreateUser = (name: string, email: string, password: string) => {
+    api.post('/user/sign-up', {name, email, password}).then(() => {
+      alert('Cadastrado realizado com sucesso')
+      handleLogin(email, password);
+      navigate('/')
+    }).catch((error) => {
+      console.log('Não foi possível criar novo usuário', error);
+      alert('Não foi possível criar o usuário. Verifique os dados e tente novamente.')
+    })
+  }
   
 
   return (
@@ -49,6 +60,7 @@ export const UserStorage = ({children} : any) => {
       login,
       user,
       handleLogin,
+      handleCreateUser,
       logOut
     }}>
       {children}

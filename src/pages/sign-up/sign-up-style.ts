@@ -1,17 +1,5 @@
 import styled from "styled-components";
 
-interface ValidEmailProps {
-  validEmail: boolean
-}
-
-interface ValidPasswordProps {
-  validPassword: boolean
-}
-
-interface invalidMessageProps {
-  invalid: boolean
-}
-
 export const MainContainer = styled.div`
   width: 100%;
   height: 100vh;
@@ -21,10 +9,9 @@ export const MainContainer = styled.div`
   justify-content: center;
   flex-direction: column;
 `;
-
-export const LoginContainer = styled.div`
-  width: 480px;
-  height: 530px;
+export const SignUpContainer = styled.div`
+  width: 450px;
+  height: 570px;
   border: 1px solid ${({theme}) => theme.colors.borderColor};
   border-radius: 10px;
   background-color: ${({theme}) => theme.colors.secondary};
@@ -34,7 +21,6 @@ export const LoginContainer = styled.div`
   padding: 60px 45px;
   box-sizing: border-box;
 `;
-
 export const GoogleLogo = styled.img`
   width: 70px;
   height: 25px;
@@ -50,56 +36,91 @@ export const SubTitle = styled.h4`
   font-size: 1.1rem;
   margin: 0 0 30px 0;
 `;
-
-export const EmailInput = styled.input<ValidEmailProps>`
+export const UserNameInput = styled.input`
   width: 100%;
   height: 50px;
-  border: ${({validEmail}) => validEmail? '1px solid #d3d3d3' : '1px solid red'};
+  border: 1px solid #d3d3d3;
   border-radius: 5px;
   font-size: 17px;
   padding: 0 10px;
   box-sizing: border-box;
 
   &:focus {
-    border-color: ${({validEmail}) => validEmail? '#1a75ff' : 'red'};
+    border-color: #1a75ff;
     border-width: 2px;
     outline: none;
   }
 `;
+export const UserEmailInput = styled.input`
+  width: 100%;
+  height: 50px;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  font-size: 17px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  margin-top: 30px;
 
+  &:focus {
+    border-color: #1a75ff;
+    border-width: 2px;
+    outline: none;
+  }
+`;
 export const MessageContainer = styled.div`
   width: 100%;
 `;
 
-export const InvalidEmailMessage = styled.span<invalidMessageProps>`
-  display: ${({invalid}) => invalid? 'none' : 'block'};
-  font-size: 14px;
-  color: red;
-`;
-
-export const InvalidPasswordMessage = styled.span<invalidMessageProps>`
-  display: ${({invalid}) => invalid? 'none' : 'block'};
-  font-size: 14px;
-  color: red;
-`;
-
-export const PasswordInput = styled.input<ValidPasswordProps>`
+export const PasswordContainer = styled.div`
+  display: flex;
   width: 100%;
-  height: 50px;
-  border: ${({validPassword}) => validPassword? '1px solid #d3d3d3' : '1px solid red'};
+  column-gap: 15px;
+`;
+
+export const UserPasswordInput = styled.input`
+  width: 100%;
+  height: 35px;
+  border: 1px solid #d3d3d3;
   border-radius: 5px;
-  margin-top: 10px;
+  margin-top: 40px;
   font-size: 17px;
   padding: 0 10px;
   box-sizing: border-box;
 
   &:focus {
-    border-color: ${({validPassword}) => validPassword? '#1a75ff' : 'red'};
+    border-color: #1a75ff;
     border-width: 2px;
     outline: none;
   }
 `;
+export const ComparePassword = styled.input`
+  width: 100%;
+  height: 35px;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  margin-top: 40px;
+  font-size: 17px;
+  padding: 0 10px;
+  box-sizing: border-box;
 
+  &:focus {
+    border-color: #1a75ff;
+    border-width: 2px;
+    outline: none;
+  }
+`;
+export const PasswordSpan = styled.span`
+  color: rgba(0,0,0,0.7);
+  font-size: 14px;
+  font-weight: 400;
+`;
+export const CheckBoxContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  margin-top: 5px;
+`;
 export const ButtonsContainer = styled.div`
   display: flex;
   width: 100%;
@@ -110,8 +131,7 @@ export const ButtonsContainer = styled.div`
   box-sizing: border-box;
   margin-top: 30px;
 `;
-
-export const SignUp = styled.span`
+export const SignIn = styled.span`
   color:  #1a75ff;
   font-weight: 600;
   cursor: pointer;
@@ -121,7 +141,7 @@ export const SignUp = styled.span`
   }
 `;
 
-export const LoginButton = styled.button`
+export const SignUpButton = styled.button`
   width: 100px;
   height: 100%;
   border: none;
@@ -136,12 +156,4 @@ export const LoginButton = styled.button`
   &:hover {
     background-color: #005ce6;
   }
-`;
-
-export const CheckBoxContainer = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  column-gap: 5px;
-  margin-top: 5px;
 `;

@@ -15,6 +15,8 @@ function Login() {
 
   const [validEmail, setValidEmail] = useState(true)
 
+  const [formatEmailValid, setFormatEmailValid] = useState(true)
+
   const [validPassword, setValidPassword] = useState(true)
 
   const emailRef = useRef<HTMLInputElement>(null);
@@ -27,13 +29,33 @@ function Login() {
   },[])
 
   const userLogin = () => {
-    if (email.trim() === '') {
+    if (email.trim() !== '') {
+      setValidEmail(true)
+    }
+    if (password.trim() !== '') {
+      setValidPassword(true)
+    }
+    if (email.trim() === '' && password.trim() === '') {
+      setValidEmail(false)
+      setValidPassword(false)
+      if (emailRef.current) {
+        emailRef.current.focus()
+      }
+    }
+    else if (email.trim() === '') {
       setValidEmail(false)
       if (emailRef.current) {
         emailRef.current.focus()
       }
     }
-    else if (password.trim() === '') {
+    else if (!/\S+@\S+\.\S+/.test(email)) {
+      setFormatEmailValid(false)
+      setValidEmail(false)
+      if (emailRef.current) {
+        emailRef.current.focus()
+      }
+    }
+    else if (password.trim() === '' || password.length < 8) {
       setValidPassword(false)
       if (passwordRef.current) {
         passwordRef.current.focus()
@@ -72,7 +94,12 @@ function Login() {
         />
         <MessageContainer>
           <InvalidEmailMessage invalid={validEmail}>
-            Digite um e-mail
+            {
+            formatEmailValid?
+            'Digite o seu e-mail'
+            :
+            'O formato desse e-mail é inválido. Digite um e-mail válido.'
+            }
           </InvalidEmailMessage>
         </MessageContainer>
         <PasswordInput 
@@ -83,6 +110,9 @@ function Login() {
             if(e.key === 'Enter') {
               userLogin()
             }
+            if (e.key === " ") {
+              e.preventDefault();
+            }
           }}
           ref={passwordRef}
           validPassword={validPassword}
@@ -91,7 +121,7 @@ function Login() {
         />
         <MessageContainer>
           <InvalidPasswordMessage invalid={validPassword}>
-            Digite a sua senha
+            Digite a sua senha com 8 caracteres
           </InvalidPasswordMessage>
         </MessageContainer>
         <CheckBoxContainer>

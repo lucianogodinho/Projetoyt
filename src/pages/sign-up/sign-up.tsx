@@ -42,6 +42,7 @@ function SignUp() {
   const [UserEmailValid, setUserEmailValid] = useState(true)
   const [UserPasswordValid, setUserPasswordValid] = useState(true)
   const [formatEmailValid, setFormatEmailValid] = useState(true)
+  const [samePassword, setSamePassword] = useState(true)
 
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
@@ -95,7 +96,7 @@ function SignUp() {
         emailRef.current.focus()
       } 
     }
-    else if (userPassword.trim() === '') {
+    else if (userPassword.trim() === '' || userPassword.length < 8) {
       setUserPasswordValid(false)
       if (passwordRef.current) {
         passwordRef.current.focus()
@@ -103,6 +104,13 @@ function SignUp() {
     }
     else if (comparePassword.trim() === '') {
       setUserPasswordValid(false)
+      if (comparePasswordRef.current) {
+        comparePasswordRef.current.focus()
+      }
+    }
+    else if (userPassword !== comparePassword) {
+      setUserPasswordValid(false)
+      setSamePassword(false)
       if (comparePasswordRef.current) {
         comparePasswordRef.current.focus()
       }
@@ -148,9 +156,9 @@ function SignUp() {
           <InputEmpty valid={UserEmailValid}>
             {
             formatEmailValid? 
-            'Digite seu e-mail' 
+            'Digite seu e-mail.' 
             : 
-            'O formato desse e-mail é inválido. Digite um e-mail válido'
+            'O formato desse e-mail é inválido. Digite um e-mail válido.'
             }
           </InputEmpty>
         </MessageContainer>
@@ -165,6 +173,14 @@ function SignUp() {
               setUserPassword(e.target.value)
             }}
             maxLength={8}
+            onKeyDown={(e) => {
+              if (e.key === " ") {
+                e.preventDefault();
+              }
+              if(e.key === 'Enter') {
+                createUser()
+              }
+            }}
           />
           <ComparePassword
             valid={UserPasswordValid}  
@@ -176,11 +192,24 @@ function SignUp() {
               setComparePassword(e.target.value)
             }}
             maxLength={8}
+            onKeyDown={(e) => {
+              if (e.key === " ") {
+                e.preventDefault();
+              }
+              if(e.key === 'Enter') {
+                createUser()
+              }
+            }}
           />
         </PasswordContainer>
         <MessageContainer>
           <InputEmpty valid={UserPasswordValid}>
-            Digite uma senha e confirme
+            {
+              samePassword?
+              'Digite uma senha de pelo menos 8 caracteres e confirme.'
+              :
+              'Senha inválida. Verifique se estão iguais.'
+            }
           </InputEmpty>
         </MessageContainer>
         <PasswordSpan>

@@ -41,6 +41,7 @@ function SignUp() {
   const [UserNameValid, setUserNameValid] = useState(true)
   const [UserEmailValid, setUserEmailValid] = useState(true)
   const [UserPasswordValid, setUserPasswordValid] = useState(true)
+  const [formatEmailValid, setFormatEmailValid] = useState(true)
 
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
@@ -52,10 +53,11 @@ function SignUp() {
       nameRef.current.focus();
     }
   },[])
-
+  
   const { handleCreateUser } = useContext(UserContext)
 
   const createUser = () => {
+
     if (userName.trim() !== '') {
       setUserNameValid(true)
     }
@@ -80,23 +82,26 @@ function SignUp() {
       }
     }
     else if (userEmail.trim() === '') {
-      setUserNameValid(true)
+      setUserEmailValid(false)
+      setFormatEmailValid(true)
+      if (emailRef.current) {
+        emailRef.current.focus()
+      } 
+    }
+    else if (!/\S+@\S+\.\S+/.test(userEmail)) {
+      setFormatEmailValid(false)
       setUserEmailValid(false)
       if (emailRef.current) {
         emailRef.current.focus()
-      }
+      } 
     }
     else if (userPassword.trim() === '') {
-      setUserNameValid(true)
-      setUserEmailValid(true)
       setUserPasswordValid(false)
       if (passwordRef.current) {
         passwordRef.current.focus()
       }
     }
     else if (comparePassword.trim() === '') {
-      setUserNameValid(true)
-      setUserEmailValid(true)
       setUserPasswordValid(false)
       if (comparePasswordRef.current) {
         comparePasswordRef.current.focus()
@@ -130,8 +135,8 @@ function SignUp() {
           </InputEmpty>
         </MessageContainer>
         <UserEmailInput
-          valid={UserEmailValid} 
-          type="email"
+          valid={UserEmailValid}
+          type='email'
           placeholder="Seu endereço de e-mail"
           value={userEmail}
           ref={emailRef}
@@ -141,7 +146,12 @@ function SignUp() {
         />
         <MessageContainer>
           <InputEmpty valid={UserEmailValid}>
-            Digite o seu e-mail
+            {
+            formatEmailValid? 
+            'Digite seu e-mail' 
+            : 
+            'O formato desse e-mail é inválido. Digite um e-mail válido'
+            }
           </InputEmpty>
         </MessageContainer>
         <PasswordContainer>

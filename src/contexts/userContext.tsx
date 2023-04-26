@@ -50,7 +50,11 @@ export const UserStorage = ({children} : any) => {
       navigate('/')
     }).catch((error) => {
       console.log('Não foi possível criar novo usuário', error);
-      alert('Não foi possível criar o usuário. Verifique os dados e tente novamente.')
+      if (error.response.status === 409) { // 409 é o status de conflito para email já existente
+        alert('Este e-mail já está em uso. Por favor, tente outro.');
+      } else {
+        alert('Não foi possível criar o usuário. Verifique os dados e tente novamente.');
+      }
     })
   }
   

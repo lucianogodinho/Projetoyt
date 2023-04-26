@@ -1,5 +1,5 @@
 import { ButtonsContainer, CheckBoxContainer, EmailInput, GoogleLogo, InvalidEmailMessage, InvalidPasswordMessage, LoginButton, LoginContainer, MainContainer, MessageContainer, PasswordInput, SignUp, SubTitle, Title } from "./login-style";
-import { useContext, useState, useRef } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import { UserContext } from "../../contexts/userContext";
 import googleLogo from '../../assets/google-logo.png'
 import { useNavigate } from "react-router-dom";
@@ -19,6 +19,12 @@ function Login() {
 
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (emailRef.current !== null) {
+      emailRef.current.focus()
+    }
+  },[])
 
   const userLogin = () => {
     if (email.trim() === '') {

@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface InputValid {
+  valid: boolean
+}
+
 export const MainContainer = styled.div`
   width: 100%;
   height: 100vh;
@@ -18,7 +22,7 @@ export const SignUpContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 60px 45px;
+  padding: 60px 45px 0px 45px;
   box-sizing: border-box;
 `;
 export const GoogleLogo = styled.img`
@@ -36,25 +40,30 @@ export const SubTitle = styled.h4`
   font-size: 1.1rem;
   margin: 0 0 30px 0;
 `;
-export const UserNameInput = styled.input`
+export const UserNameInput = styled.input<InputValid>`
   width: 100%;
   height: 50px;
-  border: 1px solid #d3d3d3;
+  border: ${({valid}) => valid? "1px solid #d3d3d3" : "1px solid red"};
   border-radius: 5px;
   font-size: 17px;
   padding: 0 10px;
   box-sizing: border-box;
 
   &:focus {
-    border-color: #1a75ff;
+    border-color: ${({valid}) => valid? "#1a75ff" : "red"};
     border-width: 2px;
     outline: none;
   }
 `;
-export const UserEmailInput = styled.input`
+export const InputEmpty = styled.span<InputValid>`
+  display: ${({valid}) => valid? 'none' : 'block'};
+  font-size: 14px;
+  color: red;
+`;
+export const UserEmailInput = styled.input<InputValid>`
   width: 100%;
   height: 50px;
-  border: 1px solid #d3d3d3;
+  border: ${({valid}) => valid? "1px solid #d3d3d3" : "1px solid red"};
   border-radius: 5px;
   font-size: 17px;
   padding: 0 10px;
@@ -62,7 +71,7 @@ export const UserEmailInput = styled.input`
   margin-top: 30px;
 
   &:focus {
-    border-color: #1a75ff;
+    border-color: ${({valid}) => valid? "#1a75ff" : "red"};
     border-width: 2px;
     outline: none;
   }
@@ -75,36 +84,35 @@ export const PasswordContainer = styled.div`
   display: flex;
   width: 100%;
   column-gap: 15px;
+  margin-top: 10px;
 `;
 
-export const UserPasswordInput = styled.input`
+export const UserPasswordInput = styled.input<InputValid>`
   width: 100%;
   height: 35px;
-  border: 1px solid #d3d3d3;
+  border: ${({valid}) => valid? "1px solid #d3d3d3" : "1px solid red"};
   border-radius: 5px;
-  margin-top: 40px;
   font-size: 17px;
   padding: 0 10px;
   box-sizing: border-box;
 
   &:focus {
-    border-color: #1a75ff;
+    border-color: ${({valid}) => valid? "#1a75ff" : "red"};
     border-width: 2px;
     outline: none;
   }
 `;
-export const ComparePassword = styled.input`
+export const ComparePassword = styled.input<InputValid>`
   width: 100%;
   height: 35px;
-  border: 1px solid #d3d3d3;
+  border: ${({valid}) => valid? "1px solid #d3d3d3" : "1px solid red"};
   border-radius: 5px;
-  margin-top: 40px;
   font-size: 17px;
   padding: 0 10px;
   box-sizing: border-box;
 
   &:focus {
-    border-color: #1a75ff;
+    border-color: ${({valid}) => valid? "#1a75ff" : "red"};
     border-width: 2px;
     outline: none;
   }

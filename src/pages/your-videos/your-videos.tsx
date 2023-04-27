@@ -2,7 +2,7 @@ import { Container, UserContainer, YourVideosContainer } from "./your-videos-sty
 import { useAppContext } from "../../contexts/openMenu";
 import Header from "../../components/header/header";
 import Menu from "../../components/menu/menu";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/userContext";
 import YourVideosCards from "../../components/yourVideosCards/your-videos-cards";
 
@@ -17,7 +17,17 @@ function YourVideos() {
 
   const { openMenu } = useAppContext();
 
-  const { user, userVideos, login } = useContext(UserContext)
+  const { user, userVideos, createVideos, token } = useContext(UserContext)
+
+  const USER_ID = user.id
+
+  const [thumbnail, setThumbnail] = useState('')
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('') 
+
+  const sendVideo = () => {
+    createVideos(token, USER_ID, title, description, thumbnail)
+  }
 
   return (
     <YourVideosContainer>
@@ -25,7 +35,10 @@ function YourVideos() {
       <Menu />
       <Container openMenu={openMenu}>
         <UserContainer>
-          <button>Adicionar video</button>
+        <input type="text" onChange={(e) => setThumbnail(e.target.value)}></input>
+        <input type="text" onChange={(e) => setTitle(e.target.value)}></input>
+        <input type="text" onChange={(e) => setDescription(e.target.value)}></input>
+        <button onClick={sendVideo}>Adicionar video</button>
         </UserContainer>
         {Array.isArray(userVideos) ? (
           userVideos.map((video: Videos) => 

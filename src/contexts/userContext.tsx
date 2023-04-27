@@ -7,7 +7,7 @@ export const UserContext = createContext({} as any);
 export const UserStorage = ({children} : any) => {
   const [login, setLogin] = useState(false);
   const [user, setUser] = useState({});
-  const [userVideos, setUserVideos] = useState({}) 
+  const [userVideos, setUserVideos] = useState([])
   const [token, setToken] = useState(localStorage.getItem('token') as string)
   const navigate = useNavigate()
 
@@ -16,6 +16,17 @@ export const UserStorage = ({children} : any) => {
       setUserVideos(data.videos)
     }).catch((error) => {
       console.log('erro ao buscar vídeos', error)
+    })
+  }
+
+  const createVideos = (token: string, user_id: string, title: string, description: string, thumbnail: string) => {
+    api.post('/videos/create-video', {user_id, title, description, thumbnail}, {headers: {Authorization: token}})
+    .then(() => {
+      alert('Video enviado com sucesso!')
+      getUser(token)
+    }).catch((error) => {
+      console.log('Não foi possível enviar o vídeo', error)
+      alert('Não foi possível enviar o vídeo. Tente novamente.')
     })
   }
   
@@ -73,7 +84,9 @@ export const UserStorage = ({children} : any) => {
     <UserContext.Provider value={{
       login,
       user,
+      token,
       userVideos,
+      createVideos,
       handleLogin,
       handleCreateUser,
       logOut

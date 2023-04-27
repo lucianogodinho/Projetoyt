@@ -181,6 +181,7 @@ const Header: React.FC = () => {
                 onClick={() => {
                   logOut()
                   handleDropDownMenu()
+                  navigate('/')
                 }}>
                 Sair
               </LogOutButton>

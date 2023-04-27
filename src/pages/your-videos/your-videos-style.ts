@@ -7,14 +7,18 @@ interface ContainerProps {
 export const Container = styled.div<ContainerProps>`
   width: 100%;
   max-width: 1600px;
-  display: grid;
-  grid-template-columns: ${({openMenu}) => openMenu? 'repeat(3, 1fr)' : 'repeat(4, 1fr)'};
-  column-gap: 20px;
-  row-gap: 50px;
+  display: flex;
   flex-wrap: wrap;
-  padding: ${({openMenu}) => openMenu? '140px 50px 0 330px' : '140px 10px 0 100px'};
+  column-gap: 25px;
+  row-gap: 20px;
+  padding: ${({openMenu}) => openMenu? '70px 50px 0 330px' : '70px 10px 0 100px'};
   box-sizing: border-box;
 `;
 export const YourVideosContainer = styled.div`
   width: 100%;
+`;
+
+export const UserContainer = styled.div`
+  width: 100%;
+  height: 100px;
 `;

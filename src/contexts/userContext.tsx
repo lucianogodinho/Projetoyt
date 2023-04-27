@@ -7,13 +7,23 @@ export const UserContext = createContext({} as any);
 export const UserStorage = ({children} : any) => {
   const [login, setLogin] = useState(false);
   const [user, setUser] = useState({});
+  const [userVideos, setUserVideos] = useState({}) 
   const [token, setToken] = useState(localStorage.getItem('token') as string)
   const navigate = useNavigate()
+
+  const getVideos = (token: string, user_id: string) => {
+    api.get(`/videos/get-videos?user_id=${user_id}`, {headers: {Authorization: token}}).then(({ data }) => {
+      setUserVideos(data.videos)
+    }).catch((error) => {
+      console.log('erro ao buscar vídeos', error)
+    })
+  }
   
   const getUser = (token: string) => {
     api.get('/user/get-user', {headers: {Authorization: token}}).then(({ data }) => {
       setUser(data.user);
       setLogin(true);
+      getVideos(token, data.user.id)
     }).catch((error) => {
       console.log('usuário não autenticado', error)
     })
@@ -63,6 +73,7 @@ export const UserStorage = ({children} : any) => {
     <UserContext.Provider value={{
       login,
       user,
+      userVideos,
       handleLogin,
       handleCreateUser,
       logOut

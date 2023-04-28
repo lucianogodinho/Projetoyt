@@ -9,6 +9,7 @@ export const UserStorage = ({children} : any) => {
   const [user, setUser] = useState({});
   const [userVideos, setUserVideos] = useState([])
   const [token, setToken] = useState(localStorage.getItem('token') as string)
+  const [openDropDownMenu, setOpenDropDownMenu] = useState(false)
   const navigate = useNavigate()
 
   const getVideos = (token: string, user_id: string) => {
@@ -86,6 +87,8 @@ export const UserStorage = ({children} : any) => {
       user,
       token,
       userVideos,
+      openDropDownMenu,
+      setOpenDropDownMenu,
       createVideos,
       handleLogin,
       handleCreateUser,

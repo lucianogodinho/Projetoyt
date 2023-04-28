@@ -53,9 +53,9 @@ const Header: React.FC = () => {
     setOpenMenu(!openMenu);
   };
 
-  const { login, logOut, user } = useContext(UserContext)
+  const { login, logOut, user, openDropDownMenu, setOpenDropDownMenu } = useContext(UserContext)
 
-  const [openDropDownMenu, setOpenDropDownMenu] = useState(false)
+  
 
   const handleDropDownMenu = () => {
     setOpenDropDownMenu(!openDropDownMenu)
@@ -158,7 +158,7 @@ const Header: React.FC = () => {
             <ButtonIcon alt="ícone notificação" src={Sino}/>
           </ButtonContainer>
 
-          <ButtonContainer margin='0 0 0 10px' onClick={handleDropDownMenu}>
+          <ButtonContainer margin='0 0 0 10px' onClick={handleDropDownMenu} >
             {user && user.nome ? user.nome.charAt(0).toUpperCase() : ''}
           </ButtonContainer>
           

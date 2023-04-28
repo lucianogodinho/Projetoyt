@@ -35,6 +35,12 @@ export const Button = styled.button`
   &:hover{
     background-color: ${({theme}) => theme.colors.borderColor};
   }
+
+  &:focus {
+    outline: none;
+    background-color: black;
+    color: white;
+  }
 `;
 
 export const Slider = styled.div`

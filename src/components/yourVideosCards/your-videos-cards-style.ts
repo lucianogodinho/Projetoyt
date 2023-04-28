@@ -37,9 +37,19 @@ export const TextContainer = styled.div`
 export const Title = styled.span`
   font-weight: 600;
   color: #0f0f0f;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
 `;
 
 export const TextCard = styled.span`
   color: #8c8c8c;
   font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
 `;

@@ -19,8 +19,8 @@ export const UserStorage = ({children} : any) => {
     })
   }
 
-  const createVideos = (token: string, user_id: string, title: string, description: string, thumbnail: string) => {
-    api.post('/videos/create-video', {user_id, title, description, thumbnail}, {headers: {Authorization: token}})
+  const createVideos = (token: string, user_id: string, title: string, description: string, thumbnail: string, publishedAt: string) => {
+    api.post('/videos/create-video', {user_id, title, description, thumbnail, publishedAt}, {headers: {Authorization: token}})
     .then(() => {
       alert('Video enviado com sucesso!')
       getUser(token)

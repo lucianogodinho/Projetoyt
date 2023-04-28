@@ -6,6 +6,7 @@ interface Props {
   channelImage: string
   channelName: string
   details: string
+  publishedAt: string
 }
 
 function YourVideosCards(props: Props) {
@@ -21,6 +22,7 @@ function YourVideosCards(props: Props) {
           <Title>{props.title}</Title>
           <TextCard>{props.channelName}</TextCard>
           <TextCard>{props.details}</TextCard>
+          <TextCard>{props.publishedAt}</TextCard>
         </TextContainer>
       </TitleContainer>
     </Container>

@@ -8,11 +8,14 @@ import YourVideosCards from "../../components/yourVideosCards/your-videos-cards"
 
 function YourVideos() {
 
+
+
   interface Videos {
     title: string
     video_id: string
     thumbnail: string
     description: string
+    publishedAt: string
   }
 
   const { openMenu } = useAppContext();
@@ -23,12 +26,16 @@ function YourVideos() {
 
   const [thumbnail, setThumbnail] = useState('')
   const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('') 
+  const [description, setDescription] = useState('')
 
   const sendVideo = () => {
-    createVideos(token, USER_ID, title, description, thumbnail)
+    const dataHoraAtual: Date = new Date();
+    const dataHoraFormatada = dataHoraAtual.toLocaleString();
+    createVideos(token, USER_ID, title, description, thumbnail, dataHoraFormatada)
   }
 
+  
+  
   return (
     <YourVideosContainer>
       <Header />
@@ -47,7 +54,8 @@ function YourVideos() {
             thumbnail={video.thumbnail} 
             channelImage={user && user.nome ? user.nome.charAt(0).toUpperCase() : ''} 
             channelName={user && user.nome ? user.nome : ''}
-            details={video.description} 
+            details={video.description}
+            publishedAt={video.publishedAt} 
             key={video.video_id}
           />)
         ) 

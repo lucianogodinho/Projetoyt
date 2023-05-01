@@ -84,6 +84,17 @@ const Header: React.FC = () => {
     }
   }
 
+  const goOut = () => {
+    logOut()
+    handleDropDownMenu()
+    navigate('/')
+  }
+
+  const goYourVideos = () => {
+    navigate('/yourvideos')
+    handleDropDownMenu()
+  } 
+
   const {setCategoryId} = useCategoryContext()
 
 
@@ -175,25 +186,16 @@ const Header: React.FC = () => {
               <UserName>{user && user.nome ? user.nome : ''}</UserName>
             </UserInfoContainer>
 
-            <DropDownMenuContent>
+            <DropDownMenuContent onClick={goOut}>
               <ButtonIcon alt="ícone logout" src={logout} />
-              <LogOutButton 
-                onClick={() => {
-                  logOut()
-                  handleDropDownMenu()
-                  navigate('/')
-                }}>
+              <LogOutButton>
                 Sair
               </LogOutButton>
             </DropDownMenuContent>
 
-            <DropDownMenuContent>
+            <DropDownMenuContent onClick={goYourVideos}>
               <ButtonIcon alt="ícone logout" src={VideoIcon} />
-              <LogOutButton 
-                onClick={() => {
-                  navigate('/yourvideos')
-                  handleDropDownMenu()
-                }}>
+              <LogOutButton>
                 Seus vídeos
               </LogOutButton>
             </DropDownMenuContent>

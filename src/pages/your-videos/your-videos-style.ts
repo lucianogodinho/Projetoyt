@@ -57,9 +57,8 @@ export const ModalContent = styled.div`
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  padding: 0px 45px;
+  padding: 20px 45px;
   box-sizing: border-box;
-  row-gap: 20px;
 `;
 
 export const ModalTitle = styled.h1`
@@ -68,9 +67,9 @@ export const ModalTitle = styled.h1`
 `;
 
 export const CloseButton = styled.button`
-  position: relative;
-  top: -20px;
-  left: 630px;
+  position: absolute;
+  top: 7vh;
+  right: 24vw;
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -97,6 +96,7 @@ export const ThumbnailURL = styled.input<ValidInput>`
   font-size: 17px;
   padding: 0 10px;
   box-sizing: border-box;
+  margin-top: 20px;
 
   &:focus {
     border-color: ${({valid}) => valid? "#1a75ff" : "red"};
@@ -112,6 +112,7 @@ export const VideoTitle = styled.input<ValidInput>`
   font-size: 17px;
   padding: 0 10px;
   box-sizing: border-box;
+  margin-top: 10px;
 
   &:focus {
     border-color: ${({valid}) => valid? "#1a75ff" : "red"};
@@ -127,6 +128,7 @@ export const VideoDescription = styled.input<ValidInput>`
   font-size: 17px;
   padding: 0 10px;
   box-sizing: border-box;
+  margin-top: 10px;
 
   &:focus {
     border-color: ${({valid}) => valid? "#1a75ff" : "red"};
@@ -145,6 +147,7 @@ export const AddVideoButton = styled.button`
   font-size: 0.8rem;
   cursor: pointer;
   transition: .5s;
+  margin-top: 10px;
 
   &:hover {
     background-color: #005ce6;
@@ -161,6 +164,7 @@ export const ClearButton = styled.button`
   font-size: 0.8rem;
   cursor: pointer;
   transition: .5s;
+  margin-top: 10px;
 
   &:hover {
     background-color: #005ce6;

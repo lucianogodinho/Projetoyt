@@ -171,6 +171,7 @@ export const DropDownMenuContent = styled.div`
   align-items: center;
   padding: 0 10px;
   box-sizing: border-box;
+  cursor: pointer;
 
   &:hover {
     background-color: ${({theme}) => theme.colors.bgColor};

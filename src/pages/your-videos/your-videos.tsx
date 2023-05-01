@@ -5,6 +5,7 @@ import Menu from "../../components/menu/menu";
 import { useContext, useState, useRef } from "react";
 import { UserContext } from "../../contexts/userContext";
 import YourVideosCards from "../../components/yourVideosCards/your-videos-cards";
+import { InputEmpty, MessageContainer } from "../sign-up/sign-up-style";
 
 function YourVideos() {
 
@@ -53,22 +54,42 @@ function YourVideos() {
       if (thumbnailRef.current) {
         thumbnailRef.current.focus();
       }
+    } else if (thumbnail.trim() === '') {
+      setThumbnailValid(false)
+      if (thumbnailRef.current) {
+        thumbnailRef.current.focus()
+      }
+    } else if (title.trim() === '') {
+      setTitleValid(false)
+      if (titleRef.current) {
+        titleRef.current.focus()
+      }
+    } else if (description.trim() === '') {
+      setDescriptionValid(false)
+      if (descriptionRef.current) {
+        descriptionRef.current.focus()
+      }
     }
     else {
       createVideos(token, USER_ID, title, description, thumbnail, date)
       setHideModal(true)
+      clearInputs()
     }
   }
 
   const clearInputs = () => {
     if (thumbnailRef.current) {
       thumbnailRef.current.value = ''
+      thumbnailRef.current.focus()
+      setThumbnail('')
     }
     if (titleRef.current) {
       titleRef.current.value = ''
+      setTitle('')
     }
     if (descriptionRef.current) {
       descriptionRef.current.value = ''
+      setDescription('')
     }
   }
 
@@ -136,6 +157,11 @@ function YourVideos() {
                 ref={thumbnailRef}
                 valid={thumbnailValid} 
               />
+              <MessageContainer>
+                <InputEmpty valid={thumbnailValid}>
+                  Digite a URL da thumbnail
+                </InputEmpty>
+              </MessageContainer>
               <VideoTitle 
                 type="text" 
                 onChange={(e) => setTitle(e.target.value)} 
@@ -144,6 +170,11 @@ function YourVideos() {
                 ref={titleRef}
                 valid={titleValid}
               />
+              <MessageContainer>
+                <InputEmpty valid={titleValid}>
+                  Digite o título do vídeo
+                </InputEmpty>
+              </MessageContainer>
               <VideoDescription 
                 type="text" 
                 onChange={(e) => setDescription(e.target.value)} 
@@ -152,6 +183,11 @@ function YourVideos() {
                 ref={descriptionRef}
                 valid={descriptionValid}
               />
+              <MessageContainer>
+                <InputEmpty valid={descriptionValid}>
+                  Digite a descrição do vídeo
+                </InputEmpty>
+              </MessageContainer>
               <AddVideoButton onClick={sendVideo}>Adicionar video</AddVideoButton>
               <ClearButton onClick={clearInputs}>Limpar</ClearButton>
             </ModalContent>

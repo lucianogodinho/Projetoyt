@@ -1,14 +1,12 @@
-import { Container, UserContainer, YourVideosContainer } from "./your-videos-style";
+import { AddVideoButton, ClearButton, CloseButton, Container, Modal, ModalContent, ModalTitle, ThumbnailURL, UserContainer, UserName, VideoDescription, VideoTitle, YourVideosContainer } from "./your-videos-style";
 import { useAppContext } from "../../contexts/openMenu";
 import Header from "../../components/header/header";
 import Menu from "../../components/menu/menu";
-import { useContext, useState } from "react";
+import { useContext, useState, useRef } from "react";
 import { UserContext } from "../../contexts/userContext";
 import YourVideosCards from "../../components/yourVideosCards/your-videos-cards";
 
 function YourVideos() {
-
-
 
   interface Videos {
     title: string
@@ -28,9 +26,58 @@ function YourVideos() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
 
+  const thumbnailRef = useRef<HTMLInputElement>(null);
+  const titleRef = useRef<HTMLInputElement>(null);
+  const descriptionRef = useRef<HTMLInputElement>(null);
+
+  const [thumbnailValid, setThumbnailValid] = useState(true)
+  const [titleValid, setTitleValid] = useState(true)
+  const [descriptionValid, setDescriptionValid] = useState(true)
+
   const sendVideo = () => {
     const date: Date = new Date();
-    createVideos(token, USER_ID, title, description, thumbnail, date)
+
+    if (thumbnail.trim() !== '') {
+      setThumbnailValid(true)
+    }
+    if (title.trim() !== '') {
+      setTitleValid(true)
+    }
+    if (description.trim() !== '') {
+      setDescriptionValid(true)
+    }
+    if (thumbnail.trim() === '' && title.trim() === '' && description.trim() === '') {
+      setThumbnailValid(false)
+      setTitleValid(false)
+      setDescriptionValid(false)
+      if (thumbnailRef.current) {
+        thumbnailRef.current.focus();
+      }
+    }
+    else {
+      createVideos(token, USER_ID, title, description, thumbnail, date)
+      setHideModal(true)
+    }
+  }
+
+  const clearInputs = () => {
+    if (thumbnailRef.current) {
+      thumbnailRef.current.value = ''
+    }
+    if (titleRef.current) {
+      titleRef.current.value = ''
+    }
+    if (descriptionRef.current) {
+      descriptionRef.current.value = ''
+    }
+  }
+
+  const closeModal = () => {
+    clearInputs()
+    setThumbnailValid(true)
+    setTitleValid(true)
+    setDescriptionValid(true)
+    setHideModal(true)
   }
 
   function getTimeDifference(publishedAt: string): string {
@@ -65,6 +112,8 @@ function YourVideos() {
     }
   }
 
+  const [hideModal, setHideModal] = useState(true)
+
   
   
   return (
@@ -73,10 +122,40 @@ function YourVideos() {
       <Menu />
       <Container openMenu={openMenu}>
         <UserContainer>
-        <input type="text" onChange={(e) => setThumbnail(e.target.value)}></input>
-        <input type="text" onChange={(e) => setTitle(e.target.value)}></input>
-        <input type="text" onChange={(e) => setDescription(e.target.value)}></input>
-        <button onClick={sendVideo}>Adicionar video</button>
+          <UserName>{user && user.nome ? user.nome : ''}</UserName>
+          <AddVideoButton onClick={() => setHideModal(false)}>cadastrar video</AddVideoButton>
+          <Modal hideModal={hideModal}>
+            <ModalContent>
+              <CloseButton onClick={closeModal}>X</CloseButton>
+              <ModalTitle>Enviar novo vídeo</ModalTitle>
+              <ThumbnailURL 
+                type="text"
+                placeholder="URL da thumbnail ex: https://images.server.com/120/1209131.jpg" 
+                onChange={(e) => setThumbnail(e.target.value)}
+                maxLength={200}
+                ref={thumbnailRef}
+                valid={thumbnailValid} 
+              />
+              <VideoTitle 
+                type="text" 
+                onChange={(e) => setTitle(e.target.value)} 
+                placeholder="Título do vídeo"
+                maxLength={100}
+                ref={titleRef}
+                valid={titleValid}
+              />
+              <VideoDescription 
+                type="text" 
+                onChange={(e) => setDescription(e.target.value)} 
+                placeholder="Descrição do vídeo"
+                maxLength={200}
+                ref={descriptionRef}
+                valid={descriptionValid}
+              />
+              <AddVideoButton onClick={sendVideo}>Adicionar video</AddVideoButton>
+              <ClearButton onClick={clearInputs}>Limpar</ClearButton>
+            </ModalContent>
+          </Modal>
         </UserContainer>
         {Array.isArray(userVideos) ? (
           userVideos.map((video: Videos) => 

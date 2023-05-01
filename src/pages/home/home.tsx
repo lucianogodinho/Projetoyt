@@ -32,21 +32,22 @@ function Home() {
     }
   }
 
-  const [videos, setVideosapi] = useState<Videos[]>([]);
+  const [videos, setVideos] = useState<Videos[]>([]);
   const {categoryId} = useCategoryContext()
 
   useEffect(() => {
     load()
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryId]) 
+  }, [categoryId])
 
+  const API_KEY = 'AIzaSyDLJCiB55monK9yAkvBEvcX4CjUMVNKRcg'
 
-  const url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&chart=mostPopular&hl=pt_BR&maxResults=48&regionCode=br&videoCategoryId=${categoryId}&key=AIzaSyDLJCiB55monK9yAkvBEvcX4CjUMVNKRcg`
+  const url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&chart=mostPopular&hl=pt_BR&maxResults=48&regionCode=br&videoCategoryId=${categoryId}&key=${API_KEY}`
 
   async function load() {
     try {
       const resposta = await axios.get(url)
-      setVideosapi(resposta.data.items)
+      setVideos(resposta.data.items)
     }catch(erro){
       console.log(erro)
     }

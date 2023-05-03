@@ -67,7 +67,7 @@ export const UserStorage = ({children} : any) => {
 
   const handleCreateUser = (name: string, email: string, password: string) => {
     api.post('/user/sign-up', {name, email, password}).then(() => {
-      alert('Cadastrado realizado com sucesso')
+      alert('Usuário criado com sucesso')
       handleLogin(email, password);
       navigate('/')
     }).catch((error) => {

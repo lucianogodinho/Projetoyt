@@ -17,7 +17,7 @@ export const Container = styled.div<ContainerProps>`
   top: 50px;
   overflow-y: auto;
 
-  @media(max-width: 688px) {
+  @media(max-width: 834px) {
     z-index: 5;
     background-color: #fff;
   }

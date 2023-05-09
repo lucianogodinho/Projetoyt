@@ -17,9 +17,14 @@ export const Container = styled.div<ContainerProps>`
     grid-template-columns: ${({openMenu}) => openMenu? 'repeat(2, 1fr)' : 'repeat(3, 1fr)'};
   }
 
+  @media(max-width: 834px) {
+    grid-template-columns: repeat(2, 1fr)
+  }
+
   @media(max-width: 688px) {
     grid-template-columns: repeat(1, 1fr)
   }
+
 `;
 
 export const MainContainer = styled.div<ContainerProps>`
@@ -29,6 +34,10 @@ export const MainContainer = styled.div<ContainerProps>`
   flex-direction: column;
   padding: ${({openMenu}) => openMenu? '140px 50px 0 290px' : '140px 10px 0 100px'};
   box-sizing: border-box;
+
+  @media(max-width: 834px) {
+    padding: 140px 10px 0 100px;
+  }
 
   @media(max-width: 688px) {
     padding: 140px 60px 0 150px;

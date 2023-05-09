@@ -42,6 +42,10 @@ export const MainContainer = styled.div<ContainerProps>`
   @media(max-width: 688px) {
     padding: 140px 60px 0 150px;
   }
+
+  @media(max-width: 414px) {
+    padding: 140px 20px 0 20px;
+  }
 `;
 export const HomeContainer = styled.div`
   width: 100%;

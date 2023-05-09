@@ -20,7 +20,9 @@ import {
   UserInfoContainer,
   UserName,
   ClearButton,
-  CloseImg
+  CloseImg,
+  SearchButtonResponsive,
+  BackButton
 } from "./header-style";
 import Menu from '../../assets/menu.png'
 import Logoyt from '../../assets/logoyoutube.png'
@@ -32,6 +34,7 @@ import logout from '../../assets/logout.png'
 import LoginIconPng from '../../assets/login-icon.png'
 import VideoIcon from '../../assets/video.png'
 import CloseIcon from '../../assets/close.png'
+import BackButtonIcon from '../../assets/voltar.png'
 import { useAppContext } from "../../contexts/openMenu";
 import { useNavigate } from "react-router-dom";
 import { useContext, useRef, useState} from "react";
@@ -46,6 +49,8 @@ const Header: React.FC = () => {
   const { openMenu, setOpenMenu } = useAppContext();
 
   const [clearButton, setClearButton] = useState(false)
+
+  const [openSearch, setOpenSearch] = useState(false)
 
   const navigate = useNavigate();
 
@@ -113,7 +118,15 @@ const Header: React.FC = () => {
 
       </LogoContainer>
 
-      <SearchContainer>
+      <SearchButtonResponsive onClick={() => setOpenSearch(true)}>
+        <ButtonIcon alt="ícone lupa" src={Lupa}/>
+      </SearchButtonResponsive>
+
+      <SearchContainer openSearch={openSearch}>
+
+        <BackButton openSearch={openSearch} onClick={() => setOpenSearch(false)}>
+          <img alt="Botão voltar" src={BackButtonIcon} style={{width: '20px'}}/>
+        </BackButton>
 
         <SearchInputContainer>
           <SearchInput
@@ -127,6 +140,7 @@ const Header: React.FC = () => {
               if (e.key === "Enter") {
                 setSearch(inputValue)
                 navigate('/search')
+                setOpenSearch(false)
               }
             }}
           />
@@ -138,6 +152,7 @@ const Header: React.FC = () => {
             <CloseImg src={CloseIcon}/>
             
           </ClearButton>
+          
         </SearchInputContainer>
 
         <SearchButton 
@@ -148,8 +163,8 @@ const Header: React.FC = () => {
             }
             setSearch(inputValue)
             navigate('/search')
-          }
-        }>
+          }}
+        >
           <ButtonIcon alt="ícone lupa" src={Lupa}/>
         </SearchButton>
 
@@ -157,11 +172,12 @@ const Header: React.FC = () => {
           <ButtonIcon alt="ícone microfone" src={Mic}/>
         </ButtonContainer>
 
+
       </SearchContainer>
 
       {login?
         <HeaderButtons>
-          <ButtonContainer margin='0 0 0 10px' onClick={() => navigate('/yourvideos')} >
+          <ButtonContainer onClick={() => navigate('/yourvideos')} >
             <ButtonIcon alt="ícone vídeo" src={Video} />
           </ButtonContainer>
 

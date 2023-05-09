@@ -9,6 +9,10 @@ interface ClearButtonProps {
   clearButton: boolean;
 }
 
+interface Responsive {
+  openSearch: boolean
+}
+
 export const Container = styled.header`
   width: 100%;
   height: 55px;
@@ -70,6 +74,10 @@ export const ButtonIcon = styled.img`
 export const Logo = styled.img`
   width: 100px;
   cursor: pointer;
+
+  @media (max-width: 414px) {
+    width: 80px;
+  }
 `;
 
 export const LinkLogo = styled(NavLink)`
@@ -80,8 +88,18 @@ export const LinkLogo = styled(NavLink)`
   justify-content: center;
 `;
 
-export const SearchContainer = styled.div`
+export const SearchContainer = styled.div<Responsive>`
   display: flex;
+
+  @media(max-width: 414px) {
+    position: fixed;
+    top: ${({openSearch}) => openSearch? '10px' : '-100px'};
+    left: 0;
+    width: 95%;
+    z-index: 6;
+    background-color: #fff;
+    height: 50px;
+  }
 `;
 
 export const SearchInputContainer = styled.div`
@@ -93,6 +111,11 @@ export const SearchInputContainer = styled.div`
   align-items: center;
   padding: 0 16px;
 
+  @media(max-width: 834px) {
+    width: 260px;
+    margin-left: 10px;
+  }
+
   @media(max-width: 688px) {
     width: 230px;
     margin-left: 10px;
@@ -101,6 +124,10 @@ export const SearchInputContainer = styled.div`
   @media(max-width: 600px) {
     width: 200px;
     margin-left: 10px;
+  }
+
+  @media(max-width: 414px) {
+    width: 100%;
   }
 `;
 
@@ -123,9 +150,53 @@ export const SearchButton = styled.div`
   cursor: pointer;
 `;
 
+export const SearchButtonResponsive = styled.div`
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f8f8;
+  border: 1px solid ${({theme}) => theme.colors.borderColor};
+  cursor: pointer;
+
+  @media(max-width: 414px) {
+    display: flex;
+    border-radius: 50%;
+    min-height: 40px;
+    min-width: 40px;
+    max-height: 40px;
+    max-width: 40px;
+  }
+`;
+
+export const BackButton = styled.button<Responsive>`
+  display: ${({openSearch}) => openSearch? 'flex' : 'none'};
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: .4s;
+  margin-left: 10px;
+
+  &:hover{
+    background-color: ${({theme}) => theme.colors.bgColor};
+  }
+`;
+
 export const HeaderButtons = styled.div`
   width: 200px;
   display: flex;
+
+  @media(max-width: 834px) {
+    margin-left: 10px;
+  }
+  
+  @media(max-width: 414px) {
+    margin-left: 50px;
+  }
 `;
 
 export const LoginContainer = styled.div`

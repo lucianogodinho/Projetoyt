@@ -19,8 +19,16 @@ export const Container = styled.div<ContainerProps>`
     width: ${({openMenu}) => openMenu? '73%' : '92%'};
   }
 
+  @media(max-width: 834px) {
+    width: 88%;
+  }
+
   @media(max-width: 688px) {
     width: 80%;
+  }
+
+  @media(max-width: 414px) {
+    width: 100%;
   }
 `;
 

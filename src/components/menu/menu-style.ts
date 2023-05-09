@@ -16,6 +16,11 @@ export const Container = styled.div<ContainerProps>`
   position: fixed;
   top: 50px;
   overflow-y: auto;
+
+  @media(max-width: 688px) {
+    z-index: 5;
+    background-color: #fff;
+  }
 `;
 
 export const MenuContainer = styled.div`

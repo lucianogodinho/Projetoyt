@@ -153,7 +153,7 @@ const Header: React.FC = () => {
           <ButtonIcon alt="ícone lupa" src={Lupa}/>
         </SearchButton>
 
-        <ButtonContainer margin='0 0 0 10px'>
+        <ButtonContainer margin='0 0 0 10px' responsive688>
           <ButtonIcon alt="ícone microfone" src={Mic}/>
         </ButtonContainer>
 
@@ -161,11 +161,11 @@ const Header: React.FC = () => {
 
       {login?
         <HeaderButtons>
-          <ButtonContainer margin='0 0 0 10px'>
-            <ButtonIcon alt="ícone vídeo" src={Video}/>
+          <ButtonContainer margin='0 0 0 10px' onClick={() => navigate('/yourvideos')} >
+            <ButtonIcon alt="ícone vídeo" src={Video} />
           </ButtonContainer>
 
-          <ButtonContainer margin='0 0 0 10px'>
+          <ButtonContainer margin='0 0 0 10px' responsive600 >
             <ButtonIcon alt="ícone notificação" src={Sino}/>
           </ButtonContainer>
 

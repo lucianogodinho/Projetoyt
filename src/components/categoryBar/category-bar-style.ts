@@ -14,6 +14,14 @@ export const Container = styled.div<ContainerProps>`
   align-items: center;
   background-color: ${({theme}) => theme.colors.secondary};
   z-index: 1;
+
+  @media(max-width: 1024px) {
+    width: ${({openMenu}) => openMenu? '73%' : '92%'};
+  }
+
+  @media(max-width: 688px) {
+    width: 80%;
+  }
 `;
 
 export const Button = styled.button`

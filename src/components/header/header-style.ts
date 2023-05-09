@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 interface ContainerProps {
   openDropDownMenu: boolean;
@@ -27,7 +27,7 @@ export const LogoContainer = styled.div`
   align-items: center;
 `;
 
-export const ButtonContainer = styled.button<{ margin?: string }>`
+export const ButtonContainer = styled.button<{ margin?: string, responsive688?: boolean, responsive600?: boolean }>`
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -42,6 +42,25 @@ export const ButtonContainer = styled.button<{ margin?: string }>`
   &:hover{
     background-color: ${({theme}) => theme.colors.bgColor};
   }
+
+  ${props =>
+    props.responsive688 &&
+    css`
+      @media (max-width: 688px) {
+        display: none;
+      }
+    `
+  }
+  
+  ${props =>
+    props.responsive600 &&
+    css`
+      @media (max-width: 600px) {
+        display: none;
+      }
+    `
+  }
+
 `;
 
 export const ButtonIcon = styled.img`
@@ -73,6 +92,16 @@ export const SearchInputContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 0 16px;
+
+  @media(max-width: 688px) {
+    width: 230px;
+    margin-left: 10px;
+  }
+
+  @media(max-width: 600px) {
+    width: 200px;
+    margin-left: 10px;
+  }
 `;
 
 export const SearchInput = styled.input`

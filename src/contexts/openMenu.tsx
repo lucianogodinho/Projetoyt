@@ -10,14 +10,14 @@ interface AppContextProps {
 }
 
 const AppContext = createContext<AppContextType>({
-  openMenu: true,
+  openMenu: false,
   setOpenMenu: () => {},
 } as AppContextType);
 
 export const useAppContext = () => useContext(AppContext);
 
 export const AppProvider: React.FC<AppContextProps> = ({ children }) => {
-  const [openMenu, setOpenMenu] = useState(true);
+  const [openMenu, setOpenMenu] = useState(false);
 
   return (
     <AppContext.Provider value={{ openMenu, setOpenMenu }}>

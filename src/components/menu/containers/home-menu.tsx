@@ -20,12 +20,12 @@ const items = [
 
 function HomeMenu() {
 
-  const { openMenu } = useAppContext();
+  const { openMenu, setOpenMenu } = useAppContext();
 
   return (
     <MenuContainer>
       {items.map((item, index) => (
-        <Link key={index} to={item.link}>
+        <Link key={index} to={item.link} onClick={() => setOpenMenu(false)}>
           <MenuItem openMenu={openMenu}>
             <ButtonIcon alt="Ícone" src={item.icon}/>
             <MenuItemDescription openMenu={openMenu}>{item.description}</MenuItemDescription>

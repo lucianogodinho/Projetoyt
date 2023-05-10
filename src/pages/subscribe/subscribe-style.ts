@@ -14,6 +14,10 @@ export const Container = styled.div<ContainerProps>`
   flex-wrap: wrap;
   padding: ${({openMenu}) => openMenu? '140px 50px 0 330px' : '140px 10px 0 100px'};
   box-sizing: border-box;
+
+  @media(max-width: 834px) {
+    padding: 70px 10px 0 100px;
+  }
 `;
 export const SubscribeContainer = styled.div`
   width: 100%;

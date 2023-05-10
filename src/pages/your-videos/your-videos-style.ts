@@ -18,6 +18,16 @@ export const Container = styled.div<ContainerProps>`
   row-gap: 20px;
   padding: ${({openMenu}) => openMenu? '70px 50px 0 330px' : '70px 10px 0 100px'};
   box-sizing: border-box;
+
+  @media(max-width: 834px) {
+    padding: 70px 10px 0 100px;
+    justify-content: center;
+  }
+
+  @media(max-width: 414px) {
+    padding: 70px 10px 0 10px;
+    justify-content: center;
+  }
 `;
 export const YourVideosContainer = styled.div`
   width: 100%;
@@ -29,6 +39,11 @@ export const UserContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media(max-width: 834px) {
+    height: 150px;
+    justify-content: center;
+  }
 `;
 
 export const UserName = styled.h1`
@@ -59,6 +74,18 @@ export const ModalContent = styled.div`
   flex-direction: column;
   padding: 20px 45px;
   box-sizing: border-box;
+
+  @media(max-width: 834px) {
+    width: 80vw;
+    height: 50vh;
+    padding: 20px 10px;
+  }
+
+  @media(max-width: 600px) {
+    width: 98vw;
+    height: 60vh;
+    padding: 20px 10px;
+  }
 `;
 
 export const ModalTitle = styled.h1`
@@ -85,6 +112,16 @@ export const CloseButton = styled.button`
 
   &:hover {
     background-color: red;
+  }
+
+  @media(max-width: 834px) {
+    right: 8vw;
+    top: 23vh;
+  }
+
+  @media(max-width: 600px) {
+    right: 0;
+    top: 18vh;
   }
 `;
 

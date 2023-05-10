@@ -24,6 +24,18 @@ export const SignUpContainer = styled.div`
   align-items: center;
   padding: 60px 45px 0px 45px;
   box-sizing: border-box;
+
+  @media(max-width: 834px) {
+    width: 550px;
+    height: 530px;
+    padding: 60px 10px;
+  }
+
+  @media(max-width: 414px) {
+    width: 350px;
+    height: 530px;
+    padding: 60px 10px;
+  }
 `;
 export const GoogleLogo = styled.img`
   width: 70px;

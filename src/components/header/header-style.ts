@@ -250,6 +250,10 @@ export const DropDownMenu = styled.div<ContainerProps>`
   top: 8px;
   right: ${({openDropDownMenu}) => openDropDownMenu ? '110px' : '-200px'};
   transition: 0.5s;
+
+  @media(max-width: 375px) {
+    right: ${({openDropDownMenu}) => openDropDownMenu ? '70px' : '-200px'};
+  }
 `
 export const UserInfoContainer = styled.div`
   width: 100%;

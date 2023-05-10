@@ -32,7 +32,9 @@ function SearchPage() {
   const {search} = useSearchContext()
   
   useEffect(() => {
-    load()
+    if (search !== '') {
+      load()
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search])
 
@@ -40,12 +42,14 @@ function SearchPage() {
   const API_KEY = 'AIzaSyDLJCiB55monK9yAkvBEvcX4CjUMVNKRcg'
   const URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${search}&maxResults=48&&key=${API_KEY}`
   async function load() {
-    try {
-      const resposta = await axios.get(URL)
-      setVideosapi(resposta.data.items)
-      console.log(resposta.data.items)
-    }catch(erro){
-      console.log(erro)
+    if (search !== '') {
+      try {
+        const resposta = await axios.get(URL)
+        setVideosapi(resposta.data.items)
+      } 
+      catch(erro){
+        console.log(erro)
+      }
     }
   }
 
@@ -90,7 +94,7 @@ function SearchPage() {
       <Header />
       <Menu />
       <Container openMenu={openMenu}>
-        {videos.map((video) => (
+        {videos.map((video, index) => (
             <VideoSearchCard
             title={video.snippet.title} 
             thumbnail={video.snippet.thumbnails.high?.url} 
@@ -98,7 +102,7 @@ function SearchPage() {
             channelName={video.snippet.channelTitle}
             details={`10 mi visualizações - ${getPublishedTime(video.snippet.publishedAt)}`}
             description={video.snippet.description} 
-            key={video.id.videoId}
+            key={index}
             />
           ))}
       </Container>

@@ -52,6 +52,16 @@ const Header: React.FC = () => {
 
   const [openSearch, setOpenSearch] = useState(false)
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const Search = () => {
+    setOpenSearch(true)
+    if(inputRef.current) {
+      inputRef.current.focus()
+    }
+  }
+  
+
   const navigate = useNavigate();
 
   const handleMenuClick = () => {
@@ -79,7 +89,6 @@ const Header: React.FC = () => {
     )
   }
 
-  const inputRef = useRef<HTMLInputElement>(null);
 
   const clearInput = () => {
     setInputValue('')
@@ -118,7 +127,7 @@ const Header: React.FC = () => {
 
       </LogoContainer>
 
-      <SearchButtonResponsive onClick={() => setOpenSearch(true)}>
+      <SearchButtonResponsive onClick={Search}>
         <ButtonIcon alt="ícone lupa" src={Lupa}/>
       </SearchButtonResponsive>
 

@@ -43,6 +43,7 @@ export const UserStorage = ({children} : any) => {
 
   useEffect(() => {
     getUser(token)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[token])
 
   const logOut = () => {

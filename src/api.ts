@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: 'http://localhost:4000',
+  baseURL: 'https://youtube-api.cyclic.app',
   headers: {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',

@@ -1,9 +1,14 @@
-# Youtube Clone
+# Youtube Project
 
 ## Clone da interface do Youtube
 
-Essa é uma aplicação **React** em **Typescript** baseada no YouTube. Esse projeto não está disponível para
-visualização no navegador pois ainda está em desenvolvimento. Em breve o colocaremos em produção.
+Essa é uma aplicação construída em **React** com **Typescript** baseada no YouTube. Esse projeto possui diversas funcionalidades como pesquisar vídeos, navegar pela barra de categorias onde clicar em algum botão faz com que a página recarregue somente com vídeos relacionados aquela categoria específica. Também é possível criar uma conta e fazer login. Quando logado, é possível cadastrar um novo vídeo com título, thumbnail e descrição. Essa aplicação consome a API de dados do YouTube e também possui uma API própria construída com Node.JS que é responsável pelo cadastro de novos usuários, autenticação e login, cadastro de novos vídeos e colher dados do usuário logado. Essa API integra com um banco de dados que inicialmente era do MariaDB e posteriormente, ao realizar o deploy para o ambiente online, migrado para o freeSQL Database. É uma aplicação incrível, completa e extremamente funcional. 
+
+Para visualizar o projeto no seu navegador [clique aqui](https://youtube-project-ten.vercel.app/).
+
+### Tecnologias
+
+React, Styled Components, React Hooks (useState, useEffect, useContext, useRef), Axios, TypeScript, API dados YouTube, API Node.JS, FreeSQL Database.
 
 # Instruções
 

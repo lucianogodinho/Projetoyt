@@ -27,15 +27,15 @@ Este é um projeto aberto. Confira a seguir informações relevantes sobre ele.<
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - React JS
--Typescript
--Node JS
--Mongo DB
+- Typescript
+- Node JS
+- Mongo DB
 
 ## 📚 Bibliotecas
 
 - Axios
--Styled-components
--Mongoose
+- Styled-components
+- Mongoose
 
 ## 💻 Projeto
 

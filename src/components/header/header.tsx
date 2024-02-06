@@ -1,14 +1,14 @@
-import { 
-  ButtonContainer, 
-  ButtonIcon, 
-  Container, 
-  Logo, 
+import {
+  ButtonContainer,
+  ButtonIcon,
+  Container,
+  Logo,
   LogoContainer,
   SearchContainer,
   SearchInputContainer,
   SearchInput,
   SearchButton,
-  HeaderButtons, 
+  HeaderButtons,
   LinkLogo,
   LoginContainer,
   LoginButton,
@@ -37,7 +37,7 @@ import CloseIcon from '../../assets/close.png'
 import BackButtonIcon from '../../assets/voltar.png'
 import { useAppContext } from "../../contexts/openMenu";
 import { useNavigate } from "react-router-dom";
-import { useContext, useRef, useState} from "react";
+import { useContext, useRef, useState } from "react";
 import { UserContext } from "../../contexts/userContext";
 import { useSearchContext } from "../../contexts/searchContext";
 import { useCategoryContext } from "../../contexts/searchCategories";
@@ -56,11 +56,11 @@ const Header: React.FC = () => {
 
   const Search = () => {
     setOpenSearch(true)
-    if(inputRef.current) {
+    if (inputRef.current) {
       inputRef.current.focus()
     }
   }
-  
+
 
   const navigate = useNavigate();
 
@@ -70,19 +70,19 @@ const Header: React.FC = () => {
 
   const { login, logOut, user, openDropDownMenu, setOpenDropDownMenu } = useContext(UserContext)
 
-  
+
 
   const handleDropDownMenu = () => {
     setOpenDropDownMenu(!openDropDownMenu)
   }
 
-  const {setSearch} = useSearchContext()
+  const { setSearch } = useSearchContext()
 
   const [inputValue, setInputValue] = useState('')
 
   function handleInput(inputValue: string) {
     setInputValue(inputValue)
-    if(inputValue === '') {
+    if (inputValue === '') {
       setClearButton(false)
     } else (
       setClearButton(true)
@@ -107,9 +107,9 @@ const Header: React.FC = () => {
   const goYourVideos = () => {
     navigate('/yourvideos')
     handleDropDownMenu()
-  } 
+  }
 
-  const {setCategoryId} = useCategoryContext()
+  const { setCategoryId } = useCategoryContext()
 
 
   return (
@@ -118,7 +118,7 @@ const Header: React.FC = () => {
       <LogoContainer>
 
         <ButtonContainer onClick={handleMenuClick} margin='0 10px 0 0'>
-          <ButtonIcon alt="logo menu" src={Menu}/>
+          <ButtonIcon alt="logo menu" src={Menu} />
         </ButtonContainer>
 
         <LinkLogo to='/' onClick={() => setCategoryId('0')}>
@@ -128,20 +128,20 @@ const Header: React.FC = () => {
       </LogoContainer>
 
       <SearchButtonResponsive onClick={Search}>
-        <ButtonIcon alt="ícone lupa" src={Lupa}/>
+        <ButtonIcon alt="ícone lupa" src={Lupa} />
       </SearchButtonResponsive>
 
       <SearchContainer openSearch={openSearch}>
 
         <BackButton openSearch={openSearch} onClick={() => setOpenSearch(false)}>
-          <img alt="Botão voltar" src={BackButtonIcon} style={{width: '20px'}}/>
+          <img alt="Botão voltar" src={BackButtonIcon} style={{ width: '20px' }} />
         </BackButton>
 
         <SearchInputContainer>
           <SearchInput
             ref={inputRef}
-            value={inputValue} 
-            placeholder="Pesquisar" 
+            value={inputValue}
+            placeholder="Pesquisar"
             onChange={(e) => {
               handleInput(e.target.value)
             }}
@@ -153,18 +153,18 @@ const Header: React.FC = () => {
               }
             }}
           />
-          <ClearButton 
+          <ClearButton
             clearButton={clearButton}
             onClick={clearInput}
           >
 
-            <CloseImg src={CloseIcon}/>
-            
+            <CloseImg src={CloseIcon} />
+
           </ClearButton>
-          
+
         </SearchInputContainer>
 
-        <SearchButton 
+        <SearchButton
           onClick={() => {
             if (inputValue.trim() === '') {
               alert('Digite alguma palavra chave antes de tentar pesquisar')
@@ -174,41 +174,41 @@ const Header: React.FC = () => {
             navigate('/search')
           }}
         >
-          <ButtonIcon alt="ícone lupa" src={Lupa}/>
+          <ButtonIcon alt="ícone lupa" src={Lupa} />
         </SearchButton>
 
         <ButtonContainer margin='0 0 0 10px' responsive688>
-          <ButtonIcon alt="ícone microfone" src={Mic}/>
+          <ButtonIcon alt="ícone microfone" src={Mic} />
         </ButtonContainer>
 
 
       </SearchContainer>
 
-      {login?
+      {login ?
         <HeaderButtons>
           <ButtonContainer onClick={() => navigate('/yourvideos')} >
             <ButtonIcon alt="ícone vídeo" src={Video} />
           </ButtonContainer>
 
           <ButtonContainer margin='0 0 0 10px' responsive600 >
-            <ButtonIcon alt="ícone notificação" src={Sino}/>
+            <ButtonIcon alt="ícone notificação" src={Sino} />
           </ButtonContainer>
 
           <ButtonContainer margin='0 0 0 10px' onClick={handleDropDownMenu} >
-            {user && user.nome ? user.nome.charAt(0).toUpperCase() : ''}
+            {user && user.name ? user.name.charAt(0).toUpperCase() : ''}
           </ButtonContainer>
-          
+
           <DropDownMenu openDropDownMenu={openDropDownMenu}>
 
             <UserInfoContainer>
-              <ButtonContainer 
-              margin='0 0 0 10px' 
-              onClick={handleDropDownMenu} 
-              style={{backgroundColor: '#f2f2f2'}}
+              <ButtonContainer
+                margin='0 0 0 10px'
+                onClick={handleDropDownMenu}
+                style={{ backgroundColor: '#f2f2f2' }}
               >
-                {user && user.nome ? user.nome.charAt(0).toUpperCase() : ''}
+                {user && user.name ? user.name.charAt(0).toUpperCase() : ''}
               </ButtonContainer>
-              <UserName>{user && user.nome ? user.nome : ''}</UserName>
+              <UserName>{user && user.name ? user.name : ''}</UserName>
             </UserInfoContainer>
 
             <DropDownMenuContent onClick={goOut}>

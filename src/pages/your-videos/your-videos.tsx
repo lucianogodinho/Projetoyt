@@ -10,8 +10,8 @@ import { InputEmpty, MessageContainer } from "../sign-up/sign-up-style";
 function YourVideos() {
 
   interface Videos {
+    id: string
     title: string
-    video_id: string
     thumbnail: string
     description: string
     publishedAt: string
@@ -109,7 +109,7 @@ function YourVideos() {
     const week = 7 * day;
     const month = 30 * day;
     const year = 12 * month;
-  
+
     if (diff < minute * 5) {
       return "Agora";
     } else if (diff < hour) {
@@ -135,8 +135,8 @@ function YourVideos() {
 
   const [hideModal, setHideModal] = useState(true)
 
-  
-  
+
+
   return (
     <YourVideosContainer>
       <Header />
@@ -149,22 +149,22 @@ function YourVideos() {
             <ModalContent>
               <CloseButton onClick={closeModal}>X</CloseButton>
               <ModalTitle>Enviar novo vídeo</ModalTitle>
-              <ThumbnailURL 
+              <ThumbnailURL
                 type="text"
-                placeholder="URL da thumbnail ex: https://images.server.com/120/1209131.jpg" 
+                placeholder="URL da thumbnail ex: https://images.server.com/120/1209131.jpg"
                 onChange={(e) => setThumbnail(e.target.value)}
                 maxLength={200}
                 ref={thumbnailRef}
-                valid={thumbnailValid} 
+                valid={thumbnailValid}
               />
               <MessageContainer>
                 <InputEmpty valid={thumbnailValid}>
                   Digite a URL da thumbnail
                 </InputEmpty>
               </MessageContainer>
-              <VideoTitle 
-                type="text" 
-                onChange={(e) => setTitle(e.target.value)} 
+              <VideoTitle
+                type="text"
+                onChange={(e) => setTitle(e.target.value)}
                 placeholder="Título do vídeo"
                 maxLength={100}
                 ref={titleRef}
@@ -175,9 +175,9 @@ function YourVideos() {
                   Digite o título do vídeo
                 </InputEmpty>
               </MessageContainer>
-              <VideoDescription 
-                type="text" 
-                onChange={(e) => setDescription(e.target.value)} 
+              <VideoDescription
+                type="text"
+                onChange={(e) => setDescription(e.target.value)}
                 placeholder="Descrição do vídeo"
                 maxLength={200}
                 ref={descriptionRef}
@@ -194,20 +194,20 @@ function YourVideos() {
           </Modal>
         </UserContainer>
         {Array.isArray(userVideos) ? (
-          userVideos.map((video: Videos) => 
-          <YourVideosCards 
-            title={video.title} 
-            thumbnail={video.thumbnail} 
-            channelImage={user && user.nome ? user.nome.charAt(0).toUpperCase() : ''} 
-            details={video.description}
-            publishedAt={getTimeDifference(video.publishedAt)} 
-            key={video.video_id}
-          />)
-        ) 
-        : 
-        (
-          <h1>Esse canal não possui vídeos</h1>
-        )}
+          userVideos.map((video: Videos) =>
+            <YourVideosCards
+              title={video.title}
+              thumbnail={video.thumbnail}
+              channelImage={user && user.name ? user.name.charAt(0).toUpperCase() : ''}
+              details={video.description}
+              publishedAt={getTimeDifference(video.publishedAt)}
+              key={video.id}
+            />)
+        )
+          :
+          (
+            <h1>Esse canal não possui vídeos</h1>
+          )}
       </Container>
     </YourVideosContainer>
   )

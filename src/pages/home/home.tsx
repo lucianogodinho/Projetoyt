@@ -33,14 +33,14 @@ function Home() {
   }
 
   const [videos, setVideos] = useState<Videos[]>([]);
-  const {categoryId} = useCategoryContext()
+  const { categoryId } = useCategoryContext()
 
   useEffect(() => {
     load()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryId])
 
-  const API_KEY = 'AIzaSyDLJCiB55monK9yAkvBEvcX4CjUMVNKRcg'
+  const API_KEY = process.env.REACT_APP_API_SECRET_KEY;
 
   const url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&chart=mostPopular&hl=pt_BR&maxResults=48&regionCode=br&videoCategoryId=${categoryId}&key=${API_KEY}`
 
@@ -48,7 +48,7 @@ function Home() {
     try {
       const resposta = await axios.get(url)
       setVideos(resposta.data.items)
-    }catch(erro){
+    } catch (erro) {
       console.log(erro)
     }
   }
@@ -108,13 +108,13 @@ function Home() {
         <CategoryBar />
         <Container openMenu={openMenu}>
           {videos.map((video) => (
-            <VideoCard 
-            title={video.snippet.title} 
-            thumbnail={video.snippet.thumbnails.maxres?.url || video.snippet.thumbnails.high?.url} 
-            channelImage={video.snippet.channelTitle.charAt(0).toUpperCase()} 
-            channelName={video.snippet.channelTitle}
-            details={`${formatViewCount(Number(video.statistics.viewCount))} - ${getPublishedTime(video.snippet.publishedAt)}`} 
-            key={video.id}
+            <VideoCard
+              title={video.snippet.title}
+              thumbnail={video.snippet.thumbnails.maxres?.url || video.snippet.thumbnails.high?.url}
+              channelImage={video.snippet.channelTitle.charAt(0).toUpperCase()}
+              channelName={video.snippet.channelTitle}
+              details={`${formatViewCount(Number(video.statistics.viewCount))} - ${getPublishedTime(video.snippet.publishedAt)}`}
+              key={video.id}
             />
           ))}
         </Container>
@@ -123,7 +123,7 @@ function Home() {
 
       </MainContainer>
 
-    </HomeContainer>  
+    </HomeContainer>
   )
 }
 

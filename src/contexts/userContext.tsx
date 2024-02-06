@@ -73,14 +73,14 @@ export const UserStorage = ({ children }: any) => {
         getUser(response.data.token);
         navigate('/');
       }
-      if (response.status === 401) {
-        alert("Senha incorreta. Verifique e tente novamente.");
+
+    } catch (error: any) {
+      if (error && error.response.status === 401) {
+        alert(error.response.data.message);
       }
-      if (response.status === 404) {
-        alert("Usuário não encontrado. Verifique o email e tente novamente.");
+      if (error && error.response.status === 404) {
+        alert(error.response.data.message);
       }
-    } catch {
-      alert('Usuário ou senha incorretos. Verifique os dados e tente novamente.');
     }
   };
 
@@ -91,11 +91,10 @@ export const UserStorage = ({ children }: any) => {
         alert('Usuário criado com sucesso.')
         handleLogin(email, password);
       }
-      if (response.status === 409) {
-        alert("Já existe um usuário cadastrado com esse email. Use outro email.");
+    } catch (error: any) {
+      if (error && error.response.status === 409) {
+        alert(error.response.data.message);
       }
-    } catch {
-      alert("Erro ao criar novo usuário. Verifique os dados e tente novamente.");
     }
   };
 

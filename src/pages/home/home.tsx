@@ -40,7 +40,7 @@ function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryId])
 
-  const API_KEY = process.env.REACT_APP_API_SECRET_KEY;
+  const API_KEY = 'AIzaSyBiS7elTT9-_ZhcBW6XCjpcNytFp1Xj1F8';
 
   const url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&chart=mostPopular&hl=pt_BR&maxResults=48&regionCode=br&videoCategoryId=${categoryId}&key=${API_KEY}`
 
